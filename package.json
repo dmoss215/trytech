@@ -1,0 +1,30 @@
+{
+  "name": "trytech",
+  "version": "1.0.0",
+  "description": "site to try new tech products for a monthly subscription fee",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dmoss215/trytech.git"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "mysql",
+    "sequelize",
+    "handlebars"
+  ],
+  "author": "dm",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dmoss215/trytech/issues"
+  },
+  "homepage": "https://github.com/dmoss215/trytech#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "mysql": "^2.15.0"
+  }
+}
