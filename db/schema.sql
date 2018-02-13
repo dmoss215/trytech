@@ -26,6 +26,7 @@ CREATE TABLE users (
     address_state VARCHAR (25) NOT NULL,
     address_zip VARCHAR (5) NOT NULL, 
     payment_method ENUM('credit card', 'paypal', 'bitcoin', 'voucher'),
+    agreement_signed BOOLEAN NOT NULL DEFAULT false,
     subscription_type INT NOT NULL,
     date_registered DATETIME NOT NULL,
     PRIMARY KEY (user_id)
