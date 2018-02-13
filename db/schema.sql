@@ -36,7 +36,7 @@ CREATE TABLE subscriptions (
     tier_name VARCHAR(15) NOT NULL DEFAULT "pay as you go",
     monthly_cost DECIMAL(10,2) NOT NULL DEFAULT 00.00,
     num_devices INT NOT NULL DEFAULT 1,
-    try_days INT NOT NULL DEFAULT 5,
+    num_days INT NOT NULL DEFAULT 5,
     PRIMARY KEY (subscription_id)
 );
 

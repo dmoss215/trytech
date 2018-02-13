@@ -8,7 +8,7 @@ module.exports = function (sequelize, DataTypes) {
         retail_price: {type: DataTypes.DECIMAL(10, 2)},
         image_url: {type: DataTypes.STRING},
         rating: {type: DataTypes.FLOAT},
-        units_available: {type: DataTypes.INTEGER, allowNull: false, defaultValue: false}
+        units_available: {type: DataTypes.INTEGER, allowNull: false, defaultValue: 0}
     });
 
     return Product;
