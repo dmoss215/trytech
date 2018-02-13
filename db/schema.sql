@@ -8,7 +8,7 @@ CREATE TABLE products (
     product_id INT NOT NULL AUTO_INCREMENT,
     product_name VARCHAR(255) NOT NULL,
     manufacturer VARCHAR(30),
-    description TEXT,
+    product_description TEXT,
     retail_price DECIMAL(10,2),
     image_url VARCHAR(100),
     rating FLOAT(2,1),
