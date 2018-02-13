@@ -20,15 +20,22 @@ routerCustomer.get("/", function (req, res) {
         ]
     }).then(function (productList) {
 
-                var hbsObj = {
-                    products: productList,
-                };
+        db.Category.findAll({
+            order: [
+                ['category_name', 'ASC']
+            ]
+        }).then(function (categoryList) {
 
-                console.log(hbsObj);
-                res.render("index", hbsObj);
+            var hbsObj = {
+                products: productList,
+                categories: categoryList
+            };
 
-            });
+            console.log(hbsObj);
+            res.render("index", hbsObj);
 
+        });
+    });
 });
 
 

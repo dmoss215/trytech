@@ -64,5 +64,11 @@ CREATE TABLE  completedTry (
     completed_dateout DATETIME NOT NULL, 
     completed_dateback DATETIME NOT NULL,
     PRIMARY KEY (completed_id)
-)
+);
+
+CREATE TABLE categories (
+	category_id INT NOT NULL AUTO_INCREMENT,
+    category_name VARCHAR(20)
+);
+
 

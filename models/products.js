@@ -7,6 +7,7 @@ module.exports = function (sequelize, DataTypes) {
         product_description: {type: DataTypes.TEXT},
         retail_price: {type: DataTypes.DECIMAL(10, 2)},
         image_url: {type: DataTypes.STRING},
+        category_id: {type: DataTypes.INTEGER, allowNULL: false},
         rating: {type: DataTypes.FLOAT},
         units_available: {type: DataTypes.INTEGER, allowNull: false, defaultValue: 0}
     });

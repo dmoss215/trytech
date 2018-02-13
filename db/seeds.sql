@@ -51,3 +51,10 @@ VALUES
 ("protester", 29.99, 10, 7, NOW(),NOW());
 
 SELECT * FROM subscriptions;
+
+INSERT INTO categories (category_name)
+VALUES
+("phones", NOW(),NOW()),
+("headphones", NOW(),NOW());
+
+SELECT * FROM categories;

@@ -1,9 +1,31 @@
 {{!-- handlebars code for inserting into {{{body}}} element of main.handlebars --}}
 <p></p>
- {{#each products}}
+
+
+<strong>======== Catagories ========</strong>
+
+{{#each categories}}
+<ul>
+    <li>
+        <strong>{{this.category_name}}</strong>
+    </li>
+
+</ul>
+
+{{/each}}
+
+<p>
+    <hr>
+</p>
+
+<strong>===== Products =======</strong>
+
+{{#each products}}
 
 <ul>
-    <p><strong>{{this.product_name}}</strong></p>
+    <p>
+        <strong>{{this.product_name}}</strong>
+    </p>
     <li>
         <img src="{{this.image_url}}" alt="{{this.product_name}} image" height="200px">
     </li>
@@ -14,7 +36,4 @@
     <li>{{this.units_available}}</li>
 </ul>
 
-<hr>
-
-
- {{/each}}
+<hr> {{/each}}
