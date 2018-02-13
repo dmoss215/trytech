@@ -48,16 +48,16 @@ CREATE TABLE items (
     PRIMARY KEY (item_id)
 );
 
-CREATE TABLE trying (
-    trying_id INT NOT NULL AUTO_INCREMENT,
-    trying_customer INT NOT NULL,
-    trying_item INT NOT NULL,
-    try_date DATETIME NOT NULL, 
-    date_sent DATETIME,
-    PRIMARY KEY (trying_id)
+CREATE TABLE activeTry (
+    active_id INT NOT NULL AUTO_INCREMENT,
+    active_customer INT NOT NULL,
+    active_item INT NOT NULL,
+    active_startdate DATETIME NOT NULL, 
+    active_mailed DATETIME,
+    PRIMARY KEY (active_id)
 );
 
-CREATE TABLE  completed (
+CREATE TABLE  completedTry (
     completed_id INT NOT NULL AUTO_INCREMENT,
     completed_customer INT NOT NULL,
     completed_item INT NOT NULL,
