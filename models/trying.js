@@ -2,10 +2,10 @@
 
 module.exports = function (sequelize, DataTypes) {
     var Try = sequelize.define("Try", {
-        activeTry_customer: {type: DataType.INTEGER, allowNull: false},
-        activeTry_item: {type: DataType.INTEGER, allowNull: false},
-        active_startdate: {type: DataType.DATE, allowNull: false},
-        active_mailed: {type: DataType.DATE}
+        activeTry_customer: {type: DataTypes.INTEGER, allowNull: false},
+        activeTry_item: {type: DataTypes.INTEGER, allowNull: false},
+        active_startdate: {type: DataTypes.DATE, allowNull: false},
+        active_mailed: {type: DataTypes.DATE}
 
     });
 

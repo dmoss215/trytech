@@ -4,7 +4,7 @@ module.exports = function (sequelize, DataTypes) {
     var Product = sequelize.define("Product", {
         product_name: {type: DataTypes.STRING, allowNull: false},
         manufacturer: {type: DataTypes.STRING},
-        product_description: {type: DatatTypes.TEXT},
+        product_description: {type: DataTypes.TEXT},
         retail_price: {type: DataTypes.DECIMAL(10, 2)},
         image_url: {type: DataTypes.STRING},
         rating: {type: DataTypes.FLOAT},
