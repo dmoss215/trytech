@@ -2,12 +2,19 @@
 
 module.exports = function (sequelize, DataTypes) {
     var Product = sequelize.define("Product", {
-
-
-
-
+        product_name: {type: DataTypes.STRING, allowNull: false},
+        manufacturer: {type: DataTypes.STRING},
+        description: {type: DatatTypes.TEXT},
+        retail_price: {type: DataTypes.DECIMAL(10, 2)},
+        image_url: {type: DataTypes.STRING},
+        rating: {type: DataTypes.FLOAT},
+        units_available: {type: DataTypes.INTEGER, allowNull: false, defaultValue: false}
     });
 
     return Product;
 };
+
+
+
+
 
