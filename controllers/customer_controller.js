@@ -10,6 +10,26 @@ var db = require("../models");
 // ===================================
 
 
+// route for /
+
+routerCustomer.get("/", function (req, res) {
+
+    db.Product.findAll({
+        order: [
+            ['product_name', 'ASC']
+        ]
+    }).then(function (productList) {
+
+                var hbsObj = {
+                    products: productList,
+                };
+
+                console.log(hbsObj);
+                res.render("index", hbsObj);
+
+            });
+
+});
 
 
 

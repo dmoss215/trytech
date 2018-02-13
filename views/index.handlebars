@@ -1,1 +1,20 @@
 {{!-- handlebars code for inserting into {{{body}}} element of main.handlebars --}}
+<p></p>
+ {{#each products}}
+
+<ul>
+    <p><strong>{{this.product_name}}</strong></p>
+    <li>
+        <img src="{{this.image_url}}" alt="{{this.product_name}} image" height="200px">
+    </li>
+    <li>{{this.manufacturer}}</li>
+    <li>{{this.product_description}}</li>
+    <li>{{this.retail_price}}</li>
+    <li>{{this.rating}}</li>
+    <li>{{this.units_available}}</li>
+</ul>
+
+<hr>
+
+
+ {{/each}}
