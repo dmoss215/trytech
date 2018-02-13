@@ -56,12 +56,12 @@ CREATE TABLE trying (
     PRIMARY KEY (trying_id)
 );
 
-CREATE TABLE  tried (
-    tried_id INT NOT NULL AUTO_INCREMENT,
-    tried_customer INT NOT NULL,
-    tried_item INT NOT NULL,
-    tried_dateout DATETIME NOT NULL, 
-    tried_dateback DATETIME NOT NULL,
-    PRIMARY KEY (tried_id)
+CREATE TABLE  completed (
+    completed_id INT NOT NULL AUTO_INCREMENT,
+    completed_customer INT NOT NULL,
+    completed_item INT NOT NULL,
+    completed_dateout DATETIME NOT NULL, 
+    completed_dateback DATETIME NOT NULL,
+    PRIMARY KEY (completed_id)
 )
 
