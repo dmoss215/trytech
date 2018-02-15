@@ -1,0 +1,14 @@
+.jumbotron-fluid {
+    background-image: url('./img/header7.jpg');
+    height: 550px;
+    padding-top: 20px;
+}
+
+.header-text {
+    color: 	#ffaaa5;	
+}
+
+.btn-primary {
+    background-color: #a8e6cf;
+    border-color: #a8e6cf;
+}
