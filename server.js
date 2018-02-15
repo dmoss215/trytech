@@ -6,7 +6,7 @@ var methovr = require("method-override");
 
 // Set up express
 
-var PORT = process.env.PORT || 3080;
+var PORT = process.env.PORT || 3000;
 var app = express();
 
 // require sequelize models for syncing
@@ -36,3 +36,4 @@ db.sequelize.sync({ force: true }).then(function () {
         console.log("Listening at localhost: " + PORT);
     });
 });
+
