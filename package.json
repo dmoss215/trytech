@@ -16,7 +16,6 @@
     "mysql",
     "sequelize",
     "handlebars"
-
   ],
   "author": "dm",
   "license": "ISC",
@@ -31,6 +30,15 @@
     "method-override": "^2.3.10",
     "mysql2": "^1.5.2",
     "sequelize": "^4.33.1",
-    "body-parser": "^1.18.2"
+    "body-parser": "^1.18.2",
+    "bcryptjs": "*",
+    "connect-flash": "*",
+    "cookie-parser": "^1.4.1",
+    "express-messages": "*",
+    "express-session": "*",
+    "express-validator": "*",
+    "passport": "*",
+    "passport-http": "*",
+    "passport-local": "*"
   }
 }

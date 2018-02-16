@@ -14,12 +14,6 @@ var db = require("../models");
 
 routerCustomer.get("/", function (req, res) {
 
-    db.Product.findAll({
-        order: [
-            ['product_name', 'ASC']
-        ]
-    }).then(function (productList) {
-
         db.Category.findAll({
             order: [
                 ['category_name', 'ASC']
@@ -27,7 +21,6 @@ routerCustomer.get("/", function (req, res) {
         }).then(function (categoryList) {
 
             var hbsObj = {
-                products: productList,
                 categories: categoryList
             };
 
@@ -36,15 +29,26 @@ routerCustomer.get("/", function (req, res) {
 
         });
     });
+
+
+routerCustomer.get("/categories/:id", function (req, res) {
+
+    db.Product.findAll({
+        order: [
+            ['product_name', 'ASC']
+        ],
+        where: {
+            id: req.params.id
+        }
+    }).then(function (productList) {
+
+        var hbsObj = {
+            products: productList
+        };
+
+    res.render("categories", hbsObj);
+    });
 });
-
-
-
-
-
-
-
-
 
 // export routes for use in server.js
 
