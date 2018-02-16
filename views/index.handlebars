@@ -1,39 +1,65 @@
 {{!-- handlebars code for inserting into {{{body}}} element of main.handlebars --}}
-<p></p>
+<body>
+
+    <div class="container-fluid">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4 header-text">TryTech</h1>
+                <p class="lead header-text">Try all of the newest and coolest tech products before you spend a ton of money on one!.</p>
+                <!-- <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a> -->
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        Categories
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        {{#each categories}}
+                            <a class="dropdown-item" href="/categories/{{this.id}}">
+                                {{this.category_name}}
+                            </a>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12 howitworks">
+                <h1>How it works</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4 steps">
+                <i class="fas fa-edit homepage-icons"></i>
+                <h2>1. Sign Up</h2>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam reiciendis, nam obcaecati qui cum laudantium, deserunt aperiam
+                culpa ipsam vitae enim cumque itaque totam, facere aliquam neque quam et voluptas?
+            </div>
+            <div class="col-sm-4 steps">
+                <i class="fas fa-tv homepage-icons"></i>
+                <h2>2. Pick a Product</h2>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nulla quam consequatur sed tenetur debitis veniam aut maiores!
+                Omnis dicta ratione laudantium aperiam enim voluptatem dolore, esse, aspernatur recusandae dolorum consectetur.
+            </div>
+            <div class="col-sm-4 steps">
+                <i class="fas fa-power-off homepage-icons"></i>
+                <h2>3. Try It Out</h2>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id amet ullam vel iure repellendus labore quae? Quis amet necessitatibus
+                quas nesciunt sequi. Quia corrupti cumque neque architecto exercitationem. Deleniti, fugiat.
+            </div>
+        </div>
 
 
-<strong>======== Catagories ========</strong>
 
-{{#each categories}}
-<ul>
-    <li>
-        <strong>{{this.category_name}}</strong>
-    </li>
+    </div>
 
-</ul>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
 
-{{/each}}
-
-<p>
-    <hr>
-</p>
-
-<strong>===== Products =======</strong>
-
-{{#each products}}
-
-<ul>
-    <p>
-        <strong>{{this.product_name}}</strong>
-    </p>
-    <li>
-        <img src="{{this.image_url}}" alt="{{this.product_name}} image" height="200px">
-    </li>
-    <li>{{this.manufacturer}}</li>
-    <li>{{this.product_description}}</li>
-    <li>{{this.retail_price}}</li>
-    <li>{{this.rating}}</li>
-    <li>{{this.units_available}}</li>
-</ul>
-
-<hr> {{/each}}
+</html>

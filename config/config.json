@@ -1,8 +1,8 @@
 {
     "development": {  
 
-      "username": "root",
-      "password": "cryptobunny$1",
+      "username": "testuser",
+      "password": "Hello123",
       "database": "trytech_db",
       "host": "localhost",
       "dialect": "mysql"
