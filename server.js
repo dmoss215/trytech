@@ -1,32 +1,38 @@
+// dependencies
+
 var express = require("express");
 var bodyParser = require("body-parser");
+var methovr = require("method-override");
 
-var PORT = process.env.PORT || 3000;
+// Set up express
 
+var PORT = process.env.PORT || 3080;
 var app = express();
 
+// require sequelize models for syncing
 var db = require("./models");
 
-// Serve static content for the app from the "public" directory in the application directory.
+// serve static content
 app.use(express.static("public"));
 
-// parse application/x-www-form-urlencoded
+// parse api URLs and json with bodyparser
 app.use(bodyParser.urlencoded({ extended: false }));
-
-// parse application/json
 app.use(bodyParser.json());
 
-// Set Handlebars.
-var exphbs = require("express-handlebars");	//or other templating engine of our choice
+// set up handlebars
+var exphbs = require("express-handlebars");
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-// Import routes and give the server access to them.
-var routes = require("./controllers/trytech_controller.js");
+// import routes
+app.use( require("./controllers/customer_controller.js"));
+app.use( require("./controllers/manager_controller.js"));
 
-app.use(routes);
+// sync sequelize model then start express
 
-app.listen(PORT, function() {
-	console.log("App now listening at localhost:" + PORT);
+db.sequelize.sync({ force: true }).then(function () {
+    app.listen(PORT, function () {
+        console.log("Listening at localhost: " + PORT);
+    });
 });
