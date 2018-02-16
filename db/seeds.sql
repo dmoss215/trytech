@@ -55,6 +55,12 @@ SELECT * FROM subscriptions;
 INSERT INTO categories (category_name)
 VALUES
 ("phones", NOW(),NOW()),
-("headphones", NOW(),NOW());
+("headphones", NOW(),NOW()),
+("laptops/computers", NOW(), NOW()),
+("tablets", NOW(), NOW()),
+("gaming systems", NOW(), NOW()),
+("smartwatches", NOW(), NOW()),
+("fitness trackers", NOW(), NOW()),
+("bluetooth speakers", NOW(), NOW());
 
 SELECT * FROM categories;
