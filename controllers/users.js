@@ -13,14 +13,14 @@ routerUser.get('/login', function (req, res) {
 });
 
 routerUser.post('/users/register', function(req, res) {
-		var newUser = req.body;
-		console.log(newUser);
-		// var submitOK = false;
-		db.User.create({
-				user_firstname: req.body.name,
-				user_lastname: req.body.username,
-				user_email: req.body.email
-		});
+	var newUser = req.body;
+	console.log(newUser);
+	// var submitOK = false;
+	db.User.create({
+		user_firstname: req.body.firstName,
+		user_lastname: req.body.lastName,
+		user_email: req.body.email
+	});
 
 });
 
