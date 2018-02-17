@@ -20,6 +20,7 @@
 
 .steps {
     text-align: center;
+    margin-top: 50px;
 }
 
 .homepage-icons {
@@ -36,4 +37,10 @@
 
 .register-submit-btn {
     margin-bottom: 20px;
+    background-color: #20DE89;
+    border-color: #20DE89;
+}
+
+.product-card {
+    margin: 20px;
 }
