@@ -1,6 +1,6 @@
 USE trytech_db;
 
-INSERT INTO categories (category_name)
+INSERT INTO categories (category_name, createdAt, updatedAt)
 VALUES
 ("phones", NOW(),NOW()),
 ("headphones", NOW(),NOW()),
@@ -24,7 +24,7 @@ Splash, water, and dust resistant;
 Sapphire crystal lens cover;",
 1131.96,
 "/assets/images/iphone-x.jpg",
-1,
+1,	--phones
 8.8,
 5,
 NOW(),
@@ -38,7 +38,7 @@ Take professional-quality photos and zoom in without losing focus, brave spills 
 The Galaxy Note8 comes in 64GB and is available in Midnight Black or Orchid Gray;",
 960.00,
 "/assets/images/galaxy-note8.png",
-1,
+1,	--phones
 8.9,
 5,
 NOW(),
@@ -53,7 +53,7 @@ Bluetooth® 4.1 with Aptx™ high-quality audio;
 Dimensions: Approx. 7.8" x 7.3" x 2" (200x185x50mm);',
 650.00,
 "/assets/images/ez-mw-60.jpg",
-2,
+2,	--headphones
 9.2,
 3,
 NOW(),
@@ -69,7 +69,7 @@ Plays for up to 12 hours off a single charge with a rechargeable lithium-ion bat
 Dust, sweat and weather resistant—with an IPX4 rating—and a crinkle-free cover (included with purchase) that won’t cause static;",
 299.00,
 "/assets/images/bose-soundwear-companion.jpg",
-2,
+2,	--headphones
 8.4,
 4,
 NOW(),
@@ -84,7 +84,7 @@ Great built-in apps. And a Force Touch trackpad and up to 9 hours of battery lif
 Ultrafast SSD storage. High-performance integrated graphics;',
 3199.99,
 "/assets/images/macbook-pro.jpg",
-3,
+3,	--laptops
 9.6,
 4,
 NOW(),
@@ -99,7 +99,7 @@ Newly redesigned front-facing speakers and quieter fanless cooling system;
 Get to work faster with the fastest startup and resume of any Surface Pro yet;",
 2199.00,
 "/assets/images/surface-pro.jpg",
-3,
+3,	--laptops
 7.4,
 5,
 NOW(),
@@ -114,7 +114,7 @@ The A10X Fusion chip delivers more power than most PC laptops;
 With Apple Pencil, the Smart Keyboard, and iOS—the most advanced mobile operating system—iPad Pro is designed for the world we live in today;",
 649.99,
 "/assets/images/ipad-pro.jpg",
-4,
+4,	--tablets
 9.8,
 5,
 NOW(),
@@ -129,7 +129,7 @@ The Galaxy Tab A’s vibrant 10.1" high-resolution screen makes everything come 
 Make the most of your time with advanced multitasking tools;',
 199.99,
 "/assets/images/galaxy-tab.jpg",
-4,
+4,	--tablets
 9.2,
 5,
 NOW(),
@@ -144,7 +144,7 @@ Dual band wireless with Wi-Fi Direct for home networks;
 12GB GDDR5 of graphic memory add speed and power to game performance;',
 499.99,
 "/assets/images/xbox-one.jpg",
-5,
+5,	--gaming systems
 9.0,
 5,
 NOW(),
@@ -159,7 +159,7 @@ One unified gaming community – Compatible with every PS4 game. Play online wit
 Extraordinary entertainment – With up to 4K streaming and 4K auto-upscaling for video content;',
 399.99,
 "/assets/images/ps4-pro.jpg",
-5,
+5,	--gaming systems
 9.0,
 5,
 NOW(),
@@ -174,7 +174,7 @@ New dual-core processor for faster app performance;
 Swimproof so you’re always ready for the pool or ocean;',
 359.99,
 "/assets/images/apple-watch.jpg",
-6,
+6,	--smartwatches
 9.6,
 5,
 NOW(),
@@ -189,7 +189,7 @@ Gives you the freedom to explore and allows you to stay on track at any weather 
 Bluetooth 4.2 connectivity and NFC technology enables simple one-touch pairing;',
 299.99,
 "/assets/images/samsung-s3-watch.jpg",
-6,
+6,	--smartwatches
 9.4,
 5,
 NOW(),
@@ -204,7 +204,7 @@ Wear your watch in the pool or rain & use it to track swim workouts with stats l
 Get continuous, automatic, wrist-based heart rate & simplified heart rate zone;',
 299.95,
 "/assets/images/fitbit-ionic.png",
-7,
+7,	--fitness trackers
 8.0,
 5,
 NOW(),
@@ -219,7 +219,7 @@ Route exploration: Discover new routes, push your boundaries and never run the s
 Understand how fit you are by comparing your fitness level with others of the same age and gender group;',
 189.99,
 "/assets/images/tomtom-spark3.jpg",
-7,
+7,	--fitness trackers
 7.0,
 5,
 NOW(),
@@ -234,7 +234,7 @@ Get the latest weather updates, flash briefings and sports scores, set timers, a
 Amazon Music, Spotify, Apple Music, internet radio and 80 other streaming services globally;',
 349.00,
 "/assets/images/sonos-bt-spkrs.png",
-8,
+8,	--bluetooth speakers
 7.4,
 5,
 NOW(),
@@ -249,7 +249,7 @@ Amplifier power output: 2x 25W (tweeter), 2x 25W (midrange), 1x 50W (subwoofer);
 the combination of Air Play, Bluetooth aptX and Spotify Connect means pristine sound is only a couple of button presses away;',
 699.99,
 "/assets/images/bwz-wireless-spkr.jpg",
-8,
+8,	--bluetooth speakers
 8.6,
 5,
 NOW(),
