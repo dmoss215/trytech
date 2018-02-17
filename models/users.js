@@ -5,7 +5,7 @@ module.exports = function (sequelize, DataTypes) {
         user_firstname: {type: DataTypes.STRING, allowNull: false},
         user_lastname: {type: DataTypes.STRING, allowNull: false},
         user_email: {type: DataTypes.STRING, allowNull: false},
-        user_password: {type: DataTypes.STRING, allowNull: false, defaultValue: ""},
+        user_password: {type: DataTypes.STRING, allowNull: false},
         address_street: {type: DataTypes.STRING, allowNull: true},
         address_city: {type: DataTypes.STRING, allowNull: true},
         address_state: {type: DataTypes.STRING, allowNull: true},
