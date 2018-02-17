@@ -5,7 +5,7 @@
 }
 
 .header-text {
-    color: 	#ffaaa5;	
+    color: 	#6290C8;	
 }
 
 .btn-primary {
@@ -26,12 +26,12 @@
 .homepage-icons {
     font-size: 50px;
     /* text-align: right; */
-    color: #ffaaa5;
+    color: #6290C8;
 }
 
 .register-container {
     width: 80%;
-    background-color: #ffd3b6;
+    background-color: #c0d2e9;
     margin-top: 20px;
 }
 
@@ -44,3 +44,5 @@
 .product-card {
     margin: 20px;
 }
+
+/* old background color and text color - #6290C8 and #ffd3b6 */
