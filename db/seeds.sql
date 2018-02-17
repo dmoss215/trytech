@@ -258,12 +258,12 @@ NOW()
 
 SELECT * FROM products;
 
-INSERT INTO users (user_firstname, user_lastname, user_email, address_street, address_city, address_state, address_zip, payment_method, agreement_signed, user_subscription, date_registered, createdAt, updatedAt) 
+INSERT INTO users (user_firstname, user_lastname, user_email, address_street, address_city, address_state, address_zip, user_password, payment_method, agreement_signed, user_subscription, date_registered, createdAt, updatedAt) 
 VALUES
-("John", "Smith", "jsmith@gmail.com", "4500 Bainbridge Road", "Euclid", "OH", "44236", "credit card", true, 1, "2017-12-02", NOW(), NOW()),			
-("Mel", "Brooks", "mel.brooks@gmail.com", "490 Euclid Ave", "Euclid", "OH", "44236", "credit card", true, 1, "2017-12-24", NOW(), NOW()), 				
-("Bill", "Pettiti", "pettiti250h@gmail.com", "23500 Pettibone Road", "Bainbridge", "OH", "44100", "paypal", true, 2, "2018-01-05", NOW(), NOW()), 		
-("Suzie", "Banshee", "thebanshee@outlook.com", "200 Hollywood Blvd", "Beverley Hills", "CA", "90210", "voucher", true, 1, "2018-02-02", NOW(),NOW());	
+("John", "Smith", "jsmith@gmail.com", "4500 Bainbridge Road", "Euclid", "OH", "44236", "HelloWorld", "credit card", true, 1, "2017-12-02", NOW(), NOW()),			
+("Mel", "Brooks", "mel.brooks@gmail.com", "490 Euclid Ave", "Euclid", "OH", "44236", "trytech", "credit card", true, 1, "2017-12-24", NOW(), NOW()), 				
+("Bill", "Pettiti", "pettiti250h@gmail.com", "23500 Pettibone Road", "Bainbridge", "OH", "44100", "thisIsCool", "paypal", true, 2, "2018-01-05", NOW(), NOW()), 		
+("Suzie", "Banshee", "thebanshee@outlook.com", "200 Hollywood Blvd", "Beverley Hills", "CA", "90210", "loveTryTech", "voucher", false, 1, "2018-02-02", NOW(),NOW());	
 
 SELECT * FROM users;
 
