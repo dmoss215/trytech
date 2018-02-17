@@ -11,4 +11,12 @@ routerUser.get('/login', function (req, res) {
     res.render('login');
 });
 
+routerUser.post('/register', function(req, res) {
+
+});
+
+routerUser.post('/login', function (req, res) {
+
+});
+
 module.exports = routerUser;
