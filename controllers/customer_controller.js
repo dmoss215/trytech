@@ -14,22 +14,19 @@ var db = require("../models");
 
 routerCustomer.get("/", function (req, res) {
 
-        db.Category.findAll({
-            order: [
-                ['category_name', 'ASC']
-            ]
-        }).then(function (categoryList) {
+    db.Category.findAll({
+        order: [
+            ['category_name', 'ASC']
+        ]
+    }).then(function (categoryList) {
+        var hbsObj = {
+            categories: categoryList
+        };
+        console.log(hbsObj);
 
-            var hbsObj = {
-                categories: categoryList
-            };
-
-            console.log(hbsObj);
-            res.render("index", hbsObj);
-
-        });
+        res.render("index", hbsObj);
     });
-
+});
 
 routerCustomer.get("/categories/:id", function (req, res) {
 
