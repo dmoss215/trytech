@@ -20,6 +20,7 @@
 
 .steps {
     text-align: center;
+    margin-top: 50px;
 }
 
 .homepage-icons {
@@ -29,6 +30,17 @@
 }
 
 .register-container {
+    width: 80%;
     background-color: #ffd3b6;
     margin-top: 20px;
+}
+
+.register-submit-btn {
+    margin-bottom: 20px;
+    background-color: #20DE89;
+    border-color: #20DE89;
+}
+
+.product-card {
+    margin: 20px;
 }
