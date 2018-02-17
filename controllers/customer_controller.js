@@ -38,7 +38,7 @@ routerCustomer.get("/categories/:id", function (req, res) {
             ['product_name', 'ASC']
         ],
         where: {
-            id: req.params.id
+            category_id: req.params.id
         }
     }).then(function (productList) {
 

@@ -1,6 +1,6 @@
 USE trytech_db;
 
-INSERT INTO categories (category_name)
+INSERT INTO categories (category_name, createdAt, updatedAt)
 VALUES
 ("phones", NOW(),NOW()),
 ("headphones", NOW(),NOW()),
