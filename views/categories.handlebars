@@ -1,9 +1,12 @@
-{{#each products}}
+
 {{!-- <h1>THIS IS CATEGORIES {{product_name}} </h1>
 <h1>THIS IS CATEGORIES PRICE {{retail_price}} </h1> --}}
 <div class="container">
 
-<div class="card" style="width: 18rem;">
+    <div class="row">
+
+{{#each products}}
+<div class="card product-card" style="width: 18rem;">
   <img class="card-img-top" src="{{image_url}}" alt="Card image cap">
   <div class="card-body">
     <h5 class="card-title">{{product_name}}</h5>
@@ -13,6 +16,8 @@
 </div>
 
 {{/each}}
+    </div>
+
 
 </div>
 

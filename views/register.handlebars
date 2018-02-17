@@ -9,14 +9,14 @@
       {{/each}}
 {{/if}}
 
-<form method="post" action="/users/register">
+<form method="post" action="/register/user">
    <div class="form-group">
-    <label>Name</label>
-    <input type="text" class="form-control" placeholder="Name" name="name">
+    <label>First Name</label>
+    <input type="text" class="form-control" placeholder="first name" name="firstName">
   </div>
   <div class="form-group">
-    <label>Username</label>
-    <input type="text" class="form-control" placeholder="Username" name="username">
+    <label>Last Name</label>
+    <input type="text" class="form-control" placeholder="last name" name="lastName">
   </div>
    <div class="form-group">
     <label>Email</label>
@@ -30,7 +30,7 @@
     <label>Confirm Password</label>
     <input type="password" class="form-control" placeholder="Password" name="password2">
   </div>
-  <button type="submit" class="btn btn-default">Submit</button>
+  <button type="submit" class="btn btn-default register-submit-btn">Submit</button>
 </form>
 
 </div> 

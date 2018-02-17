@@ -1,5 +1,9 @@
 {{!-- handlebars code for inserting into {{{body}}} element of main.handlebars --}}
+
 <body>
+    <script>
+        AOS.init();
+    </script>
 
     <div class="container-fluid">
         <div class="jumbotron jumbotron-fluid">
@@ -14,9 +18,9 @@
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         {{#each categories}}
-                            <a class="dropdown-item" href="/categories/{{this.id}}">
-                                {{this.category_name}}
-                            </a>
+                        <a class="dropdown-item" href="/categories/{{this.id}}">
+                            {{this.category_name}}
+                        </a>
                         {{/each}}
                     </div>
                 </div>
@@ -29,7 +33,7 @@
             </div>
         </div>
 
-        <div class="row">
+        {{!-- <div class="row">
             <div class="col-sm-4 steps">
                 <i class="fas fa-edit homepage-icons"></i>
                 <h2>1. Sign Up</h2>
@@ -48,8 +52,34 @@
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id amet ullam vel iure repellendus labore quae? Quis amet necessitatibus
                 quas nesciunt sequi. Quia corrupti cumque neque architecto exercitationem. Deleniti, fugiat.
             </div>
+        </div> --}}
+
+        <div class="row" data-aos="fade-right">
+            <div class="col-md-6 col-md-offset-3 mx-auto steps">
+                <i class="fas fa-edit homepage-icons"></i>
+                <h2>1. Sign Up</h2>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id amet ullam vel iure repellendus labore quae? Quis amet necessitatibus
+                quas nesciunt sequi. Quia corrupti cumque neque architecto exercitationem. Deleniti, fugiat.
+            </div>
         </div>
 
+        <div class="row" data-aos="fade-left" data-aos-duration="1200">
+            <div class="col-md-6 col-md-offset-3 mx-auto steps">
+                <i class="fas fa-tv homepage-icons"></i>
+                <h2>2. Pick a Product</h2>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id amet ullam vel iure repellendus labore quae? Quis amet necessitatibus
+                quas nesciunt sequi. Quia corrupti cumque neque architecto exercitationem. Deleniti, fugiat.
+            </div>
+        </div>
+
+        <div class="row" data-aos="fade-right">
+            <div class="col-md-6 col-md-offset-3 mx-auto steps">
+                <i class="fas fa-power-off homepage-icons"></i>
+                <h2>3. Try It Out</h2>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id amet ullam vel iure repellendus labore quae? Quis amet necessitatibus
+                quas nesciunt sequi. Quia corrupti cumque neque architecto exercitationem. Deleniti, fugiat.
+            </div>
+        </div>
 
 
     </div>
@@ -60,6 +90,8 @@
         crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+
+
 </body>
 
 </html>
