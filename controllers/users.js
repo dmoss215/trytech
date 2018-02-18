@@ -15,7 +15,6 @@ routerUser.get('/login', function (req, res) {
 routerUser.post('/register/user', function(req, res) {
 	var newUser = req.body;
 	console.log(newUser);
-	// var submitOK = false;
 	db.User.create({
 		user_firstname: req.body.firstName,
 		user_lastname: req.body.lastName,
@@ -24,7 +23,7 @@ routerUser.post('/register/user', function(req, res) {
 	}).done(
 		res.redirect("/")
 	);
-
+	
 });
 
 routerUser.post('/login', function (req, res) {
