@@ -41,6 +41,10 @@
     border-color: #20DE89;
 }
 
+.register-message-div {
+    color: red;
+}
+
 .product-card {
     margin: 20px;
 }

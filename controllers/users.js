@@ -25,11 +25,11 @@ routerUser.post('/register/user', function(req, res) {
 	}
 
 	if (newUser.password !== newUser.password2) {
-		hbsObj.message = "Please verify that your passwords match.";
+		hbsObj.message = 'Please verify that your passwords match.';
 		// $("#message-div").html("<p>Please verify that your passwords match.</p>");
 		res.render('register', hbsObj);
 	} else if (newUser.password.length < 6) {
-		hbsObj.message = "Your password must be at least 6 characters in length.";
+		hbsObj.message = 'Your password must be at least 6 characters in length.';
 		// $("#message-div").html("<p>Your password must be at least 6 characters in length.</p>");
 		res.render('register', hbsObj)
 	} else {
