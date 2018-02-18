@@ -1,0 +1,60 @@
+<div class="container manager-container">
+
+  <h2 class="page-header">Add a product to the products database</h2>
+
+  {{#if errors}} {{#each errors}}
+  <div class="alert alert-danger">{{msg}}</div>
+  {{/each}} {{/if}}
+
+  <form method="post" action="/manager/addproduct">
+    <div class="form-group">
+      <label>Product name</label>
+      <input type="text" class="form-control" placeholder="product Name" name="productName" value="{{ productName }}" required>
+    </div>
+    <div class="form-group">
+      <label>Manufacturer</label>
+      <input type="text" class="form-control" placeholder="manufacturer" name="manufacturer" value="{{ manufacturer }}" required>
+    </div>
+    <div class="form-group">
+      <label>Description</label>
+      <input type="text" class="form-control" placeholder="description" name="description" value="{{ description }}" required>
+    </div>
+    <div class="form-group">
+      <label>Retail price</label>
+      <input type="text" class="form-control" placeholder="retail price (00.00 format)" name="retailPrice" value="{{ retailPrice }}"
+        required>
+    </div>
+    <div class="form-group">
+      <label>Image URL</label>
+      <input type="text" class="form-control" placeholder="image URL" name="imageUrl" value="{{ imageUrl }}" required>
+    </div>
+
+    {{!-- <div class="form-group form-inline">
+      <label for="cat" class="control-label">Product category</label>
+      <select class="form-control category-select" id="cat">
+        {{#each categories}}
+        <option class="category-option" value="{{ category }}">{{ category_name }}</option>
+        {{/each}}
+      </select>
+    </div> --}}
+
+    <div class="form-group">
+      <label>Product category</label>
+      <input type="text" class="form-control" placeholder="category" name="category" value="{{ category }}" required>
+    </div> 
+
+    <div class="form-group">
+      <label>Rating</label>
+      <input type="number" class="form-control" placeholder="rating (1-10)" name="rating" min="0" max="10" value="{{ rating }}"
+        required>
+    </div>
+    <div class="form-group">
+      <label>Number of units</label>
+      <input type="number" class="form-control" placeholder="number of units" name="units" value="{{ units }}" required>
+    </div>
+
+    <p style="color: red;">{{ message }}</p>
+    <button type="submit" class="btn btn-default register-submit-btn">Submit</button>
+  </form>
+
+</div>
