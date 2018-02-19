@@ -1,23 +1,22 @@
-
-{{!-- <h1>THIS IS CATEGORIES {{product_name}} </h1>
+ {{!--
+<h1>THIS IS CATEGORIES {{product_name}} </h1>
 <h1>THIS IS CATEGORIES PRICE {{retail_price}} </h1> --}}
 <div class="container">
 
-    <div class="row">
+  <div class="row">
 
-{{#each products}}
-<div class="card product-card" style="width: 18rem;">
-  <img class="card-img-top" src="{{image_url}}" alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">{{product_name}}</h5>
-    <p class="card-text">{{product_description}}</p>
-    <a href="#" class="btn btn-primary">Order It!</a>
-  </div>
-</div>
-
-{{/each}}
+    {{#each products}}
+    <div class="card product-card" style="width: 18rem;">
+      <img class="card-img-top" src="{{image_url}}" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">{{product_name}}</h5>
+        <p class="card-text">{{product_description}}</p>
+        <a href="#" class="btn btn-primary">Order It!</a>
+      </div>
     </div>
 
+    {{/each}}
+  </div>
+
 
 </div>
-
