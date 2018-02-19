@@ -49,4 +49,11 @@
     margin: 20px;
 }
 
+.card-img-top {
+    width: 250px;
+    height: 250px;
+    object-fit: scale-down;
+    margin: 0 auto;
+}
+
 /* old background color and text color - #6290C8 and #ffd3b6 */

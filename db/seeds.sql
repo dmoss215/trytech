@@ -23,7 +23,7 @@ Wireless Qi charging;
 Splash, water, and dust resistant;
 Sapphire crystal lens cover;",
 1131.96,
-"/assets/images/iphone-x.jpg",
+"/assets/images/iPhone-X.jpeg",
 1,
 8.8,
 5,
