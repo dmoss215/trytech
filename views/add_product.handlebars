@@ -6,7 +6,7 @@
   <div class="alert alert-danger">{{msg}}</div>
   {{/each}} {{/if}}
 
-  <form method="post" action="/manager/addproduct">
+  <form method="post" action="/manager/addproduct">com
     <div class="form-group">
       <label>Product name</label>
       <input type="text" class="form-control" placeholder="product Name" name="productName" value="{{ productName }}" required>
@@ -29,19 +29,14 @@
       <input type="text" class="form-control" placeholder="image URL" name="imageUrl" value="{{ imageUrl }}" required>
     </div>
 
-    {{!-- <div class="form-group form-inline">
+    <div class="form-group form-inline">
       <label for="cat" class="control-label">Product category</label>
-      <select class="form-control category-select" id="cat">
+      <select class="form-control category-select" id="cat" name="category">
         {{#each categories}}
-        <option class="category-option" value="{{ category }}">{{ category_name }}</option>
+       // <option class="category-option" value="{{ id }}">{{ category_name }}</option>
         {{/each}}
       </select>
-    </div> --}}
-
-    <div class="form-group">
-      <label>Product category</label>
-      <input type="text" class="form-control" placeholder="category" name="category" value="{{ category }}" required>
-    </div> 
+    </div>
 
     <div class="form-group">
       <label>Rating</label>

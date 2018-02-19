@@ -26,25 +26,29 @@ routerManager.get("/manager/:action", function (req, res) {
 
         case "1":
 
-        db.Category.findAll({
-            order: [
-                ['category_name', 'ASC']
-            ]
-        }).then(function (categoryList) {
-            var hbsObj = {
-                categories: categoryList
-            };
+            db.Category.findAll({
+                order: [
+                    ['category_name', 'ASC']
+                ]
+            }).then(function (categoryList) {
+                var hbsObj = {
+                    categories: categoryList
+                };
 
-            res.render("add_product", hbsObj);
+                res.render("add_product", hbsObj);
 
-        });
+            });
+            break;
 
-        break;
+        case "2":
 
+            console.log("2");
 
-        case 2:
+            break;
 
-        console.log("2");
+        case "6":
+
+            res.render("ammend_customer")
 
             break;
 
