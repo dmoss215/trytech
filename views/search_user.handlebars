@@ -1,0 +1,131 @@
+<div class="container manager-container">
+
+  {{#if errors}} {{#each errors}}
+  <div class="alert alert-danger">{{msg}}</div>
+  {{/each}} {{/if}} {{#if customer.id}} {{else}}
+
+  <br />
+  <h2 class="page-header">Customer Search</h2>
+
+  <br />
+  <p>Search for a customer by id or name:</p>
+  <br />
+
+
+  <form method="post" action="/manager/searchuser">
+    <div class="form-group">
+      <label>Search by customer id</label>
+      <input type="text" class="form-control" placeholder="customer id" name="id" required>
+    </div>
+
+    <button type="submit" class="btn btn-default register-submit-btn">Submit</button>
+  </form>
+
+  <form method="get" action="/manager/searchuser">
+    <div class="form-group">
+      <label>Search by customer name</label>
+      <input type="text" class="form-control" placeholder="firstname" name="firstname" required>
+      <br />
+      <input type="text" class="form-control" placeholder="lastname" name="lastname" required>
+    </div>
+
+    <button type="submit" class="btn btn-default register-submit-btn">Submit</button>
+  </form>
+
+  {{/if}} {{#if customer.id}}
+
+
+  <br />
+  <h2 class="page-header">Customer Selected</h2>
+
+  <br />
+  <p>Review details and confirm selection:</p>
+  <br />
+
+  <table>
+    <tr>
+      <td>Customer id:</td>
+      <td>{{customer.id}}</td>
+    </tr>
+    <tr>
+      <td>
+        <hr> </td>
+      <td>
+        <hr> </td>
+    </tr>
+    <tr>
+      <td>Name: </td>
+      <td>{{customer.user_firstname}} {{customer.user_lastname}}</td>
+    </tr>
+    <tr>
+      <td>Email: </td>
+      <td>{{customer.user_email}}</td>
+    </tr>
+    <tr>
+      <td>Password: </td>
+      <td>{{customer.user_password}}</td>
+    </tr>
+    <tr>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Address: </td>
+      <td>{{customer.address_street}}</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>{{customer.address_city}}</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>{{customer.address_state}}</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>{{customer.address_zip}}</td>
+    </tr>
+    <tr>
+      <td>
+        <hr> </td>
+      <td>
+        <hr> </td>
+    </tr>
+    <tr>
+      <td>Subscription type: </td>
+      <td>{{customer.user_subscription}}</td>
+    </tr>
+    <tr>
+      <td>Date registered: </td>
+      <td>{{customer.date_registered}}</td>
+    </tr>
+    <tr>
+      <td>
+        <hr> </td>
+      <td>
+        <hr> </td>
+    </tr>
+  </table>
+  <p> </p>
+
+  <div id="confirm-buttons">
+
+    <button type="submit" class="btn btn-default register-submit-btn" id="user-confirm">Confirm</button>
+    <button type="submit" class="btn btn-default register-submit-btn" if="user-searcg-again">Search again</button>
+
+  </div>
+
+  {{else}} {{/if}}
+
+</div>
+
+<script>
+
+$document
+
+
+
+
+
+
+
+</script>
