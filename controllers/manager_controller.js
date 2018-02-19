@@ -16,7 +16,7 @@ routerManager.get("/manager", function (req, res) {
     res.render("manager");
 });
 
-
+// routes for manager actions from initial menu
 
 routerManager.get("/manager/:action", function (req, res) {
 
@@ -46,9 +46,9 @@ routerManager.get("/manager/:action", function (req, res) {
 
             break;
 
-        case "6":
+        case "5":
 
-            res.render("ammend_customer")
+            res.render("search_user");
 
             break;
 
@@ -58,25 +58,16 @@ routerManager.get("/manager/:action", function (req, res) {
 
 });
 
+// ==============================================================
 // -------------- end of switch ststement -----------------------
+// ==============================================================
+
+// route for adding a new product 
 
 routerManager.post("/manager/addproduct", function (req, res) {
 
     var newProduct = req.body;
     console.log(newProduct);
-
-    var hbsObj = {
-        productName: newProduct.productName,
-        manufacturer: newProduct.manufacturer,
-        description: newProduct.description,
-        retailPrice: newProduct.retailPrice,
-        imageUrl: newProduct.imageUrl,
-        category: newProduct.category,
-        rating: newProduct.rating,
-        units: newProduct.units
-    };
-
-    // validation code here if required
 
     db.Product.create({
         product_name: newProduct.productName,
@@ -92,6 +83,47 @@ routerManager.post("/manager/addproduct", function (req, res) {
     );
 
 });
+
+// route for searching for a particular user/customer
+
+routerManager.post("/manager/searchuser", function (req, res) {
+
+    db.User.findOne({
+        where: {
+            id: req.body.id
+        }
+    }).then(function (customerfound) {
+
+        var hbsObj = {
+            customer: customerfound
+        };
+console.log(hbsObj)
+        res.render("search_user", hbsObj);
+
+    });
+
+});
+
+
+
+// } else {
+
+//     db.User.findOne({
+//         where: Sequelize.and(
+//             {firstname: req.body.firstname},
+//             {lastname: req.body.lastname}
+//         )
+//     }).then(function (customerfound) {
+
+//         var hbsObj = {
+//             customer: customerfound
+//         };           
+
+//     res.render("search_user", hbsObj);
+//     });
+// }
+
+
 
 
 
