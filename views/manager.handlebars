@@ -1,0 +1,27 @@
+ {{!-- handlebars code for manager portal. To insert into {{{body}}} element of main.handlebars --}}
+
+<div class="container manager-container">
+
+    <h2 class="page-header">Manager Portal</h2>
+
+    {{#if errors}} {{#each errors}}
+        <div class="alert alert-danger">{{msg}}</div>
+    {{/each}} {{/if}}
+
+    This is the Trytech administration page. Select the action to perform from the menu below.
+    <br /><br />
+
+ <div class="managerActionMenu">
+
+
+            <a class="dropdown-item" href="/manager/1">Add a product</a>
+            <a class="dropdown-item" href="/manager/2">View itmes hired out</a>
+            <a class="dropdown-item" href="/manager/3">Log an item returned</a>
+            <a class="dropdown-item" href="/manager/4">Add a product catagory</a>
+            <a class="dropdown-item" href="/manager/5">View customer record</a>
+            <a class="dropdown-item" href="/manager/6">Ammend customer details</a>
+
+    </div>
+
+</div>
+
