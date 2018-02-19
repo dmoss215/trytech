@@ -41,8 +41,28 @@
     border-color: #20DE89;
 }
 
+.register-message-div {
+    color: red;
+}
+
 .product-card {
     margin: 20px;
+}
+
+.card-img-top {
+    width: 250px;
+    height: 250px;
+    object-fit: scale-down;
+    margin: 0 auto;
+}
+
+.login-btn {
+    border-color: #20DE89;
+    width: 80px;
+}
+
+.nav-nonbtn {
+    padding-top: 15px;
 }
 
 /* old background color and text color - #6290C8 and #ffd3b6 */
