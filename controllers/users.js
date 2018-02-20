@@ -34,15 +34,50 @@ routerUser.post('/register/user', function(req, res) {
 		res.render('register', hbsObj)
 	} else {
 		db.User.create({
-			user_firstname: req.body.firstName,
-			user_lastname: req.body.lastName,
-			user_email: req.body.email,
-			user_password: req.body.password
+			user_firstname: newUser.firstName,
+			user_lastname: newUser.lastName,
+			user_email: newUser.email,
+			user_password: newUser.password
 		}).done(
-			res.redirect("/")
+			res.render("success", newUser)
 		);
 	}
 	
+});
+
+routerUser.post('/welcome/user', function(req, res) {
+	var newUser = req.body;
+	console.log("New User: ", newUser);
+
+	// db.User.findOne({
+	// 	where: {
+	// 		user_firstname: newUser.firstName,
+	// 		user_lastname: newUser.lastName,
+	// 		user_email: newUser.email,
+	// 		user_password: newUser.password
+	// 	}
+	// }).then(function(customerFound) {
+	// 	hbsObj = {
+	// 		customer: customerFound
+	// 	}
+	// 	console.log(hbsObj);
+	db.User.update({
+		address_street: newUser.addressStreet,
+		address_city: newUser.addressCity,
+		address_state: newUser.addressState,
+		address_zip: newUser.addressZip
+	},
+	{
+		where: {
+			user_firstname: newUser.firstName,
+			user_lastname: newUser.lastName,
+			user_email: newUser.email,
+			user_password: newUser.password
+		}
+	}).done(
+		res.redirect("/")
+	);
+
 });
 
 routerUser.post('/login', function (req, res) {
