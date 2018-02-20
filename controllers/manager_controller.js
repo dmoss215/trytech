@@ -5,9 +5,10 @@ var routerManager = express.Router();
 
 var db = require("../models");
 
+
 // ====================================
 // create routes with logic as required
-// ===================================
+// ====================================
 
 // Route to display manager portal
 
@@ -16,7 +17,8 @@ routerManager.get("/manager", function (req, res) {
     res.render("manager");
 });
 
-// routes for manager actions from initial menu
+
+// Routes for manager actions from initial manager menu
 
 routerManager.get("/manager/:action", function (req, res) {
 
@@ -46,7 +48,7 @@ routerManager.get("/manager/:action", function (req, res) {
 
             break;
 
-        case "5":
+        case "7":
 
             res.render("search_user");
 
@@ -58,9 +60,7 @@ routerManager.get("/manager/:action", function (req, res) {
 
 });
 
-// ==============================================================
-// -------------- end of switch ststement -----------------------
-// ==============================================================
+
 
 // route for adding a new product 
 
@@ -84,44 +84,110 @@ routerManager.post("/manager/addproduct", function (req, res) {
 
 });
 
+
 // route for searching for a particular user/customer
 
 routerManager.post("/manager/searchuser", function (req, res) {
 
-    db.User.findOne({
+    if (req.body.id) {
+
+        db.User.findOne({
+            where: {
+                id: req.body.id
+            }
+        }).then(function (customerfound) {
+
+            db.Subscription.findAll({
+
+            }).then(function (subscriptionList) {
+
+                var hbsObj = {
+                    customer: customerfound,
+                    subscription: subscriptionList
+                };
+
+                res.render("search_user", hbsObj);
+
+            });
+
+        });
+
+    } else {
+
+        db.User.findOne({
+            where: {
+                user_firstname: req.body.firstname,
+                user_lastname: req.body.lastname
+            }
+
+        }).then(function (customerfound) {
+
+            db.Subscription.findAll({
+
+            }).then(function (subscriptionList) {
+
+                var hbsObj = {
+                    customer: customerfound,
+                    subscription: subscriptionList
+                };
+
+                res.render("search_user", hbsObj);
+            });
+
+        });
+
+    }
+
+});
+
+
+// route for updating a users record
+
+routerManager.post("/manager/updateuser", function (req, res) {
+
+    var updateUser = req.body;
+    console.log(updateUser);
+
+    db.User.update({
+        user_firstname: updateUser.firstName,
+        user_lastname: updateUser.lastName,
+        user_email: updateUser.email,
+        address_street: updateUser.streetname,
+        address_city: updateUser.city,
+        address_state: updateUser.state,
+        address_zip: updateUser.zip,
+        payment_method: updateUser.paymentMethod,
+        agreement_signed: updateUser.agreementSigned,
+        user_subscription: updateUser.subscriptionType
+
+    }, {
+        where: {
+            id: updateUser.id
+        }
+    }).done(
+
+        res.redirect("/manager")
+    );
+
+});
+
+
+// route for deleting a users record
+
+routerManager.delete("/manager/deleteuser", function (req, res) {
+
+    db.User.destroy({
         where: {
             id: req.body.id
         }
-    }).then(function (customerfound) {
+    }).then(function (user) {
 
-        var hbsObj = {
-            customer: customerfound
-        };
-console.log(hbsObj)
-        res.render("search_user", hbsObj);
-
+        res.json(user);
     });
 
 });
 
 
-
-// } else {
-
-//     db.User.findOne({
-//         where: Sequelize.and(
-//             {firstname: req.body.firstname},
-//             {lastname: req.body.lastname}
-//         )
-//     }).then(function (customerfound) {
-
-//         var hbsObj = {
-//             customer: customerfound
-//         };           
-
-//     res.render("search_user", hbsObj);
-//     });
-// }
 
 
 
