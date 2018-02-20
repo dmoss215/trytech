@@ -3,14 +3,26 @@ var routerUser = express.Router();
 var db = require("../models");
 
 // Register
-routerUser.get('/register', function (req, res) { 
-    res.render('register');
- });
+routerUser.get('/register', function (req, res) {
+	// res.render('register');
+	db.User.findAll({
+        order: [
+            ['payment_method', 'ASC']
+        ]
+    }).then(function (paymentList) {
+        var hbsObj = {
+            payments: paymentList
+        };
+        console.log(hbsObj.payments[0]);
+
+        res.render("register", hbsObj);
+    });
+});
 
 //  Login
-routerUser.get('/login', function (req, res) {
-    res.render('login');
-});
+// routerUser.get('/login', function (req, res) {
+//     res.render('login');
+// });
 
 routerUser.post('/register/user', function(req, res) {
 	var newUser = req.body;
@@ -46,33 +58,24 @@ routerUser.post('/register/user', function(req, res) {
 });
 
 routerUser.post('/welcome/user', function(req, res) {
+
 	var newUser = req.body;
 	console.log("New User: ", newUser);
 
-	// db.User.findOne({
-	// 	where: {
-	// 		user_firstname: newUser.firstName,
-	// 		user_lastname: newUser.lastName,
-	// 		user_email: newUser.email,
-	// 		user_password: newUser.password
-	// 	}
-	// }).then(function(customerFound) {
-	// 	hbsObj = {
-	// 		customer: customerFound
-	// 	}
-	// 	console.log(hbsObj);
+	if (newUser.agree === "on") newUser.agree = 1;
 	db.User.update({
 		address_street: newUser.addressStreet,
 		address_city: newUser.addressCity,
 		address_state: newUser.addressState,
-		address_zip: newUser.addressZip
+		address_zip: newUser.addressZip,
+		agreement_signed: newUser.agree
 	},
 	{
 		where: {
 			user_firstname: newUser.firstName,
 			user_lastname: newUser.lastName,
 			user_email: newUser.email,
-			user_password: newUser.password
+			user_password: newUser.password,
 		}
 	}).done(
 		res.redirect("/")
@@ -80,8 +83,8 @@ routerUser.post('/welcome/user', function(req, res) {
 
 });
 
-routerUser.post('/login', function (req, res) {
+// routerUser.post('/login', function (req, res) {
 
-});
+// });
 
 module.exports = routerUser;
