@@ -2,130 +2,256 @@
 
   {{#if errors}} {{#each errors}}
   <div class="alert alert-danger">{{msg}}</div>
-  {{/each}} {{/if}} {{#if customer.id}} {{else}}
+  {{/each}} {{/if}}
 
-  <br />
-  <h2 class="page-header">Customer Search</h2>
+  <row class="row">
 
-  <br />
-  <p>Search for a customer by id or name:</p>
-  <br />
+    <div class="col-md-5">
+
+      {{!-- Search for a customer --}}
+
+      <div id="search-customer-box">
+        <br />
+        <h2 class="page-header">Customer Search</h2>
+
+        <br />
+        <p>Search for a customer by id or name:</p>
+        <br />
 
 
-  <form method="post" action="/manager/searchuser">
-    <div class="form-group">
-      <label>Search by customer id</label>
-      <input type="text" class="form-control" placeholder="customer id" name="id" required>
+        <form method="post" action="/manager/searchuser">
+          <div class="form-group">
+            <label>Search by customer id</label>
+            <input type="text" class="form-control" placeholder="customer id" name="id" required>
+          </div>
+
+          <button type="submit" class="btn btn-default register-submit-btn">Submit</button>
+        </form>
+
+        <form method="post" action="/manager/searchuser">
+          <div class="form-group">
+            <label>Search by customer name</label>
+            <input type="text" class="form-control" placeholder="firstname" name="firstname" required>
+            <br />
+            <input type="text" class="form-control" placeholder="lastname" name="lastname" required>
+          </div>
+
+          <button type="submit" class="btn btn-default register-submit-btn">Submit</button>
+        </form>
+
+      </div>
+
+      {{!-- Update a customer record --}}
+
+      <div id="update-customer-box">
+
+        <br />
+        <h2 class="page-header">Update customer record</h2>
+
+        <br />
+        <p>Customer id: {{customer.id}}</p>
+        <br />
+
+        <form method="post" action="/manager/updateuser">
+
+          <div class="form-group">
+
+            <input name="id" value="{{ customer.id }}" required>
+          </div>
+
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" class="form-control" placeholder="First Name" name="firstName" value="{{ customer.user_firstname }}" required>
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" class="form-control" placeholder="Last Name" name="lastName" value="{{ customer.user_lastname }}" required>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" class="form-control" placeholder="Email" name="email" value="{{ customer.user_email }}" required>
+          </div>
+
+          <label>Address</label>
+          <div class="form-group form-inline">
+            <table>
+              <tr>
+                <td>Street:</td>
+                <td>
+                  <input type="text" class="form-control" placeholder="Streetname" name="streetname" value="{{ customer.address_street }}"
+                    required>
+                </td>
+              </tr>
+              <tr>
+                <td>City:</td>
+                <td>
+                  <input type="text" class="form-control" placeholder="City" name="city" value="{{ customer.address_city }}" required>
+                </td>
+              </tr>
+
+              <tr>
+                <td>State:</td>
+                <td>
+                  <input type="text" class="form-control" placeholder="State" name="state" value="{{ customer.address_state }}" required>
+                </td>
+              </tr>
+
+              <tr>
+                <td>Zip:</td>
+                <td>
+                  <input type="text" class="form-control" placeholder="Zip" name="zip" value="{{ customer.address_zip }}" required>
+                </td>
+              </tr>
+            </table>
+          </div>
+
+          <div class="form-group form-inline">
+            <label for="agreement" class="control-label">Payment method: &nbsp&nbsp</label>
+            <select class="form-control update-select" id="payment" name="paymentMethod">
+              <option selected class="update-option" value="{{customer.payment_method}}">{{customer.payment_method}}</option>
+              <option class="update-option" value="credit card">credit card</option>
+              <option class="update-option" value="paypal">paypal</option>
+              <option class="update-option" value="bitcoin">bitcoin</option>
+              <option class="update-option" value="voucher">voucher</option>
+            </select>
+          </div>
+
+          <div class="form-group form-inline">
+            <label for="agreement" class="control-label">Agreement signed: &nbsp&nbsp</label>
+            <select class="form-control update-select" id="agreement" name="agreementSigned">
+              <option selected class="update-option" value="{{customer.agreement_signed}}">{{customer.agreement_signed}}</option>
+              <option class="update-option" value="true">true</option>
+              <option class="update-option" value="false">false</option>
+            </select>
+          </div>
+
+          <div class="form-group form-inline">
+            <label for="subscription" class="control-label">Subscription type: &nbsp&nbsp</label>
+            <select class="form-control update-select" id="subscription" name="subscriptionType">
+              <option selected class="update-option" value="{{customer.user_subscription}}">{{customer.user_subscription}}</option>
+              {{#each subscription}}
+              <option class="update-option" value="{{ this.id }}">{{ this.tier_name }}</option>
+              {{/each}}
+            </select>
+          </div>
+
+          <p>Date Registered: {{customer.date_registered}}</p>
+
+          <p style="color: red;">{{ message }}</p>
+          <button type="submit" class="btn btn-default register-submit-btn">Save changes</button>
+
+        </form>
+
+      </div>
+
     </div>
 
-    <button type="submit" class="btn btn-default register-submit-btn">Submit</button>
-  </form>
+    <div class="col-md-2"></div>
 
-  <form method="get" action="/manager/searchuser">
-    <div class="form-group">
-      <label>Search by customer name</label>
-      <input type="text" class="form-control" placeholder="firstname" name="firstname" required>
-      <br />
-      <input type="text" class="form-control" placeholder="lastname" name="lastname" required>
+    <div class="col-md-5">
+
+
+      {{!-- Display selected customer --}}
+
+      <div id="customer-found-box">
+
+        {{#if customer.id}}
+        <br />
+        <h2 class="page-header">Selected Customer</h2>
+
+        <br />
+        <p>Review details and confirm selection:</p>
+        <br />
+
+        <table>
+          <tr>
+            <td>Customer id:</td>
+            <td>{{customer.id}}</td>
+          </tr>
+          <tr>
+            <td>
+              <hr> </td>
+            <td>
+              <hr> </td>
+          </tr>
+          <tr>
+            <td>Name: </td>
+            <td>{{customer.user_firstname}} {{customer.user_lastname}}</td>
+          </tr>
+          <tr>
+            <td>Email: </td>
+            <td>{{customer.user_email}}</td>
+          </tr>
+          <tr>
+            <td>Password: </td>
+            <td>{{customer.user_password}}</td>
+          </tr>
+          <tr>
+            <td> </td>
+          </tr>
+          <tr>
+            <td>Address: </td>
+            <td>{{customer.address_street}}</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>{{customer.address_city}}</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>{{customer.address_state}}</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>{{customer.address_zip}}</td>
+          </tr>
+          <tr>
+            <td>
+              <hr> </td>
+            <td>
+              <hr> </td>
+          </tr>
+          <tr>
+            <td>Subscription type: </td>
+            <td>{{customer.user_subscription}}</td>
+          </tr>
+          <tr>
+            <td>Date registered: </td>
+            <td>{{customer.date_registered}}</td>
+          </tr>
+          <tr>
+            <td>
+              <hr> </td>
+            <td>
+              <hr> </td>
+          </tr>
+        </table>
+        <p> </p>
+
+        {{!-- Confirm selected customer button --}}
+
+        <div id="confirm-buttons">
+          <button type="button" class="btn btn-default register-submit-btn" id="user-confirm">Confirm</button>
+          <button type="button" class="btn btn-default register-submit-btn" id="user-search-again">Search again</button>
+        </div>
+
+        {{!-- Actions on selected customer record --}}
+
+        <div id="crud-buttons">
+          <button class="btn btn-default register-submit-btn" id="update-user" data-id="{{ customer.id }}">Update</button>
+          <button class="btn btn-default register-submit-btn" id="delete-user" data-id="{{ customer.id }}">Delete </button>
+          <button class="btn btn-default register-submit-btn" id="user-items" data-id="{{ customer.id }}">Items hired</button>
+          <button class="btn btn-default register-submit-btn" id="user-history" data-id="{{ customer.id }}">History</button>
+        </div>
+
+        {{else}} {{/if}}
+
+      </div>
+
     </div>
-
-    <button type="submit" class="btn btn-default register-submit-btn">Submit</button>
-  </form>
-
-  {{/if}} {{#if customer.id}}
+  </row>
 
 
-  <br />
-  <h2 class="page-header">Customer Selected</h2>
+</div> {{!-- end container --}} {{!-- link to javascript file conatining form logic and calls --}}
 
-  <br />
-  <p>Review details and confirm selection:</p>
-  <br />
-
-  <table>
-    <tr>
-      <td>Customer id:</td>
-      <td>{{customer.id}}</td>
-    </tr>
-    <tr>
-      <td>
-        <hr> </td>
-      <td>
-        <hr> </td>
-    </tr>
-    <tr>
-      <td>Name: </td>
-      <td>{{customer.user_firstname}} {{customer.user_lastname}}</td>
-    </tr>
-    <tr>
-      <td>Email: </td>
-      <td>{{customer.user_email}}</td>
-    </tr>
-    <tr>
-      <td>Password: </td>
-      <td>{{customer.user_password}}</td>
-    </tr>
-    <tr>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>Address: </td>
-      <td>{{customer.address_street}}</td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>{{customer.address_city}}</td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>{{customer.address_state}}</td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>{{customer.address_zip}}</td>
-    </tr>
-    <tr>
-      <td>
-        <hr> </td>
-      <td>
-        <hr> </td>
-    </tr>
-    <tr>
-      <td>Subscription type: </td>
-      <td>{{customer.user_subscription}}</td>
-    </tr>
-    <tr>
-      <td>Date registered: </td>
-      <td>{{customer.date_registered}}</td>
-    </tr>
-    <tr>
-      <td>
-        <hr> </td>
-      <td>
-        <hr> </td>
-    </tr>
-  </table>
-  <p> </p>
-
-  <div id="confirm-buttons">
-
-    <button type="submit" class="btn btn-default register-submit-btn" id="user-confirm">Confirm</button>
-    <button type="submit" class="btn btn-default register-submit-btn" if="user-searcg-again">Search again</button>
-
-  </div>
-
-  {{else}} {{/if}}
-
-</div>
-
-<script>
-
-$document
-
-
-
-
-
-
-
-</script>
+<script src="/assets/javascript/search_user.js"></script>
