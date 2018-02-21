@@ -9,8 +9,8 @@
 }
 
 .btn-primary {
-    background-color: #20DE89;
-    border-color: #20DE89;
+    background-color:  #45bcae;
+    border-color:  #45bcae;
 }
 
 .howitworks {
@@ -37,8 +37,8 @@
 
 .register-submit-btn {
     margin-bottom: 20px;
-    background-color: #20DE89;
-    border-color: #20DE89;
+    background-color:  #45bcae;
+    border-color:  #45bcae;
 }
 
 .register-message-div {
@@ -57,7 +57,7 @@
 }
 
 .login-btn {
-    border-color: #20DE89;
+    border-color:  #45bcae;
     width: 80px;
 }
 
@@ -65,4 +65,20 @@
     padding-top: 15px;
 }
 
+.footer {
+    margin-top: 75px;
+}
+
+.social-icons {
+    font-size: 30px;
+    text-align: center;
+}
+
+.soc-icn {
+    margin: 0 10px 0 10px;
+}
+
+.phone-number, .address {
+    margin-left: 10px;
+}
 /* old background color and text color - #6290C8 and #ffd3b6 */
