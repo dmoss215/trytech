@@ -13,6 +13,7 @@
 	{{/if}}
 
 	<form method="post" action="/order-success">
+		<input type="hidden" name="product_name" value="{{ product.product_name }}"/>
 		<div class="form-group">
 	    <label>Full Name (as you would like it to appear on your shipping label)</label>
 	    <input type="text" class="form-control" placeholder="ex: Joseph Smith" name="fullName" required>

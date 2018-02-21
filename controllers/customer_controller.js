@@ -64,6 +64,22 @@ routerCustomer.get("/add-to-cart/:id", function (req, res) {
     });
 });
 
+routerCustomer.post("/order-success", function (req, res) {
+
+    var update = (req.body);
+    console.log(update);
+
+    if (update.update_address === "on") {
+        console.log("Need to write sequelize function to update user address with passport.js info.");
+    }
+
+    var min = 1000000;
+    var max = 9999999;
+    update.orderNumber = Math.floor(Math.random() * (max - min + 1) ) + min;
+
+    res.render("order_success", update);
+});
+
 // export routes for use in server.js
 
 module.exports = routerCustomer;
