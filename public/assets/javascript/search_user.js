@@ -1,3 +1,6 @@
+
+// set up initial boxes shown
+
 $("#confirm-buttons").show();
 $("#crud-buttons").hide();
 
@@ -8,6 +11,11 @@ $("#customer-found-box").show();
 $("#customer-updated-box").hide();
 
 
+// --------- event handlers ----------------
+
+
+// Switch user confirm/search again and CRUD buttons
+
 $("#user-confirm").on("click", function (event) {
 
     $("#confirm-buttons").hide();
@@ -15,6 +23,7 @@ $("#user-confirm").on("click", function (event) {
 
 });
 
+// show user update form (hide other boxes)
 
 $("#update-user").on("click", function (event) {
     var id = $(this).data("id");
@@ -25,36 +34,4 @@ $("#update-user").on("click", function (event) {
 
 });
 
-
-$("#delete-user").on("click", function (event) {
-    event.preventDefault();
-
-    var userId = {
-        id: $(this).data("id")
-    };
-
-    $.ajax("/manager/deleteuser", {
-        type: "DELETE",
-        data: userId
-    }).then(function () {
-        alert("user deleted");
-        window.location="/manager";
-    });
-
-});
-
-
-
-$("#user-items").on("click", function (event) {
-    var id = $(this).data("id");
-
-
-
-});
-
-$("#user-history").on("click", function (event) {
-    var id = $(this).data("id");
-
-
-
-});
+//

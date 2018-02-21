@@ -16,6 +16,14 @@ module.exports = function (sequelize, DataTypes) {
         date_registered: {type: DataTypes.DATE},
     });
 
+    User.associate = function(models) {
+        // each user mat have more than one active try at any one time (one to many)
+        User.hasMany(models.Completed);
+        User.hasMany(models.Try);
+
+    };
+
+
     return User;
 };
 
