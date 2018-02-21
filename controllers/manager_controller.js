@@ -18,7 +18,7 @@ routerManager.get("/manager", function (req, res) {
 });
 
 
-// Routes for manager actions from initial manager menu
+// ---------- Manager actions & routes -----------------------
 
 routerManager.get("/manager/:action", function (req, res) {
 
@@ -62,7 +62,7 @@ routerManager.get("/manager/:action", function (req, res) {
 
 
 
-// route for adding a new product 
+// ---------------- Add a new product  ----------------------
 
 routerManager.post("/manager/addproduct", function (req, res) {
 
@@ -85,11 +85,15 @@ routerManager.post("/manager/addproduct", function (req, res) {
 });
 
 
-// route for searching for a particular user/customer
+// ------------- Search for a particular user/customer --------
 
 routerManager.post("/manager/searchuser", function (req, res) {
 
+
+
     if (req.body.id) {
+
+        // ----- query db using user id -------------
 
         db.User.findOne({
             where: {
@@ -113,6 +117,8 @@ routerManager.post("/manager/searchuser", function (req, res) {
         });
 
     } else {
+
+        // ----- query db useing user name -------------
 
         db.User.findOne({
             where: {
@@ -141,12 +147,11 @@ routerManager.post("/manager/searchuser", function (req, res) {
 });
 
 
-// route for updating a users record
+// -------------- Update a users record -----------------
 
 routerManager.post("/manager/updateuser", function (req, res) {
 
     var updateUser = req.body;
-    console.log(updateUser);
 
     db.User.update({
         user_firstname: updateUser.firstName,
@@ -172,9 +177,9 @@ routerManager.post("/manager/updateuser", function (req, res) {
 });
 
 
-// route for deleting a users record
+// ---------------- Delete a user record -----------------------
 
-routerManager.delete("/manager/deleteuser", function (req, res) {
+routerManager.post("/manager/deleteuser", function (req, res) {
 
     db.User.destroy({
         where: {
@@ -182,14 +187,80 @@ routerManager.delete("/manager/deleteuser", function (req, res) {
         }
     }).then(function (user) {
 
-        res.json(user);
+        res.redirect("/manager");
     });
 
 });
 
+// ---------------- Get Items hired by user -----------------------
 
+routerManager.post("/manager/useritems", function (req, res) {
 
+    var id = req.body.id;
 
+    db.Try.findAll({
+        where: {
+            UserId: id
+        },
+        include: {
+            model: db.Product
+        }
+
+    }).then(function (productsFound) {
+
+        db.User.findOne({
+            where: {
+                id: id
+            }
+        }).then(function (customerFound) {
+
+            var hbsObj = {
+                products: productsFound,
+                customers: customerFound
+            };
+
+            console.log(hbsObj);
+
+            res.render("display_user_items", hbsObj);
+        });
+
+    });
+
+});
+
+routerManager.post("/manager/userhistory", function (req, res) {
+
+    var id = req.body.id;
+
+    db.Completed.findAll({
+        where: {
+            UserId: id
+        },
+        include: {
+            model: db.Product
+        }
+
+    }).then(function (productsFound) {
+
+        db.User.findOne({
+            where: {
+                id: id
+            }
+        }).then(function (customerFound) {
+
+            var hbsObj = {
+                products: productsFound,
+                customers: customerFound
+            };
+
+            console.log(hbsObj);
+
+            res.render("display_user_history", hbsObj);
+        });
+
+    });
+
+});
 
 
 

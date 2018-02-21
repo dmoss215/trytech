@@ -23,8 +23,8 @@ Wireless Qi charging;
 Splash, water, and dust resistant;
 Sapphire crystal lens cover;",
 1131.96,
-"/assets/images/iPhone-X.jpeg",
-1,
+"/assets/images/iphone-x.jpg",
+1,	
 8.8,
 5,
 NOW(),
@@ -263,7 +263,7 @@ VALUES
 ("pay as you go", 00.00, 1, 5, NOW(),NOW()),
 ("basic", 9.99, 3, 5, NOW(),NOW()),
 ("gold", 14.99, 3, 7, NOW(),NOW()),
-("protester", 29.99, 10, 7, NOW(),NOW());
+("pro-tester", 29.99, 10, 7, NOW(),NOW());
 
 SELECT * FROM subscriptions;
 
@@ -275,3 +275,37 @@ VALUES
 ("Suzie", "Banshee", "thebanshee@outlook.com", "loveTryTech", "200 Hollywood Blvd", "Beverley Hills", "CA", "90210", "voucher", false, 1, "2018-02-02", NOW(), NOW());	
 
 SELECT * FROM users;
+
+INSERT INTO tries (UserId, ProductId, active_startdate, active_mailed, createdAt, updatedAt)
+VALUES
+(2,6,NOW(),NOW(),NOW(),NOW()),
+(2,3,NOW(),NOW(),NOW(),NOW()),
+(2,10,NOW(),NOW(),NOW(),NOW()),
+(1,2,NOW(),NOW(),NOW(),NOW()),
+(1,6,NOW(),NOW(),NOW(),NOW()),
+(2,6,NOW(),NOW(),NOW(),NOW()),
+(3,7,NOW(),NOW(),NOW(),NOW()),
+(3,8,NOW(),NOW(),NOW(),NOW()),
+(3,11,NOW(),NOW(),NOW(),NOW()),
+(3,2,NOW(),NOW(),NOW(),NOW()),
+(3,1,NOW(),NOW(),NOW(),NOW()),
+(4,2,NOW(),NOW(),NOW(),NOW());
+
+SELECT * FROM tries;
+
+INSERT INTO completeds (UserId, ProductId, comleted_subscription, completed_dateout, completed_dateback, createdAt, updatedAt)
+VALUES
+(2,3,1,NOW(),NOW(),NOW(),NOW()),
+(2,5,2,NOW(),NOW(),NOW(),NOW()),
+(2,8,1,NOW(),NOW(),NOW(),NOW()),
+(1,1,1,NOW(),NOW(),NOW(),NOW()),
+(1,6,2,NOW(),NOW(),NOW(),NOW()),
+(2,1,3,NOW(),NOW(),NOW(),NOW()),
+(3,7,1,NOW(),NOW(),NOW(),NOW()),
+(3,11,1,NOW(),NOW(),NOW(),NOW()),
+(3,11,2,NOW(),NOW(),NOW(),NOW()),
+(3,12,1,NOW(),NOW(),NOW(),NOW()),
+(3,7,1,NOW(),NOW(),NOW(),NOW()),
+(4,8,2,NOW(),NOW(),NOW(),NOW());
+
+SELECT * FROM completeds;

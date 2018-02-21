@@ -8,7 +8,7 @@
 
     <div class="col-md-5">
 
-      {{!-- Search for a customer --}}
+      {{!-- ---------- User search -------------- --}}
 
       <div id="search-customer-box">
         <br />
@@ -41,7 +41,7 @@
 
       </div>
 
-      {{!-- Update a customer record --}}
+      {{!-- ----------- Update customer record ----------- --}}
 
       <div id="update-customer-box">
 
@@ -151,7 +151,7 @@
     <div class="col-md-5">
 
 
-      {{!-- Display selected customer --}}
+      {{!-- ----------- Display selected customer ------------ --}}
 
       <div id="customer-found-box">
 
@@ -232,6 +232,7 @@
 
         <div id="confirm-buttons">
           <button type="button" class="btn btn-default register-submit-btn" id="user-confirm">Confirm</button>
+
           <button type="button" class="btn btn-default register-submit-btn" id="user-search-again">Search again</button>
         </div>
 
@@ -239,9 +240,19 @@
 
         <div id="crud-buttons">
           <button class="btn btn-default register-submit-btn" id="update-user" data-id="{{ customer.id }}">Update</button>
-          <button class="btn btn-default register-submit-btn" id="delete-user" data-id="{{ customer.id }}">Delete </button>
-          <button class="btn btn-default register-submit-btn" id="user-items" data-id="{{ customer.id }}">Items hired</button>
-          <button class="btn btn-default register-submit-btn" id="user-history" data-id="{{ customer.id }}">History</button>
+
+          <form method="POST" action="/manager/deleteuser" style="display: inline-block">
+            <button type="submit"class="btn btn-default register-submit-btn" name="id" value="{{ customer.id }}">Delete</button>
+          </form>
+
+          <form method="POST" action="/manager/useritems" style="display: inline-block">
+            <button type="submit" class="btn btn-default register-submit-btn" name="id" value="{{ customer.id }}">Items hired</button>
+          </form>
+
+          <form method="POST" action="/manager/userhistory" style="display: inline-block">
+            <button type="submit" class="btn btn-default register-submit-btn" name="id" value="{{ customer.id }}">History</button>
+          </form>
+          
         </div>
 
         {{else}} {{/if}}
@@ -252,6 +263,8 @@
   </row>
 
 
-</div> {{!-- end container --}} {{!-- link to javascript file conatining form logic and calls --}}
+</div> {{!-- end container --}}
+
+ {{!-- link to javascript file conatining form logic and calls --}}
 
 <script src="/assets/javascript/search_user.js"></script>
