@@ -42,11 +42,32 @@ routerManager.get("/manager/:action", function (req, res) {
             });
             break;
 
+
         case "2":
 
-            console.log("2");
+        db.Product.findAll({
+            order: [
+                ['category_id', 'ASC']
+            ]
+        }).then(function (productList) {
 
+            db.Category.findAll({
+                order: [
+                    ['id', 'ASC']
+                ]
+            }).then(function (categoryList) {
+
+                var hbsObj = {
+                    products: productList,
+                    categories: categoryList
+                 };
+
+                 res.render("inventory_page", hbsObj);
+
+                });
+        });
             break;
+
 
         case "7":
 
@@ -228,6 +249,8 @@ routerManager.post("/manager/useritems", function (req, res) {
 
 });
 
+// ---------------- Get complete history of user hires -----------------------
+
 routerManager.post("/manager/userhistory", function (req, res) {
 
     var id = req.body.id;
@@ -258,6 +281,49 @@ routerManager.post("/manager/userhistory", function (req, res) {
             res.render("display_user_history", hbsObj);
         });
 
+    });
+
+});
+
+// ---------------- Update stock levels -----------------------
+
+routerManager.post("/manager/stockupdate", function (req, res) {
+
+    var id = req.body.id;
+    var units= req.body.units;
+
+    console.log(id + " " + units);
+
+    db.Product.update({
+        units_available: units
+    }, {
+        where: {
+            id: id
+        }
+    }).then(function (product) {
+
+        db.Product.findAll({
+            order: [
+                ['category_id', 'ASC']
+            ]
+        }).then(function (productList) {
+
+            db.Category.findAll({
+                order: [
+                    ['id', 'ASC']
+                ]
+            }).then(function (categoryList) {
+
+                var hbsObj = {
+                    products: productList,
+                    categories: categoryList
+                 };
+
+                 res.render("inventory_page", hbsObj);
+
+                });
+        });
+        
     });
 
 });
