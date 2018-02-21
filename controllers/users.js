@@ -72,10 +72,7 @@ routerUser.post('/welcome/user', function(req, res) {
 	},
 	{
 		where: {
-			user_firstname: newUser.firstName,
-			user_lastname: newUser.lastName,
-			user_email: newUser.email,
-			user_password: newUser.password,
+			user_email: newUser.email
 		}
 	}).done(
 		res.redirect("/")
