@@ -43,7 +43,24 @@ routerCustomer.get("/categories/:id", function (req, res) {
             products: productList
         };
 
-    res.render("categories", hbsObj);
+        res.render("categories", hbsObj);
+    });
+});
+
+routerCustomer.get("/add-to-cart/:id", function (req, res) {
+
+    db.Product.findOne({
+        where: {
+            id: req.params.id
+        }
+    }).then(function(product) {
+
+        var hbsObj = {
+            product: product
+        };
+        console.log(hbsObj);
+
+        res.render("order", hbsObj);
     });
 });
 

@@ -81,4 +81,13 @@
 .phone-number, .address {
     margin-left: 10px;
 }
+
+.order-header {
+    margin: 20px 0px 0px 20px;
+}
+
+.order-subheader {
+    margin-left: 40px;
+}
+
 /* old background color and text color - #6290C8 and #ffd3b6 */
