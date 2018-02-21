@@ -1,3 +1,16 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1 0 auto;
+}
+
 .jumbotron-fluid {
     background-image: url('../images/header7.jpg');
     height: 550px;
@@ -61,12 +74,17 @@
     width: 80px;
 }
 
+nav {
+    flex-shrink: 0;
+}
+
 .nav-nonbtn {
     padding-top: 15px;
 }
 
 .footer {
     margin-top: 75px;
+    flex-shrink: 0;
 }
 
 .social-icons {
