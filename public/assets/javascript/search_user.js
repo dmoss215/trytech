@@ -34,4 +34,24 @@ $("#update-user").on("click", function (event) {
 
 });
 
-//
+// event handler for search again buuton
+
+$("#user-search-again").on("click", function (event) {
+
+    window.location = "/manager";
+
+});
+
+
+// event handler for back buttons
+
+$("#back").on("click", function (event) {
+    window.location = "/manager";
+
+});
+
+$("#back-manager-menu").on("click", function (event) {
+    window.location = "/manager";
+
+});
+

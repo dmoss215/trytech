@@ -72,7 +72,9 @@ routerManager.get("/manager/:action", function (req, res) {
 
             db.Try.findAll({
 
-                include: {model: db.Product}
+                include: {
+                    model: db.Product
+                }
                 // [
                 //     {
                 //     model: db.User,
@@ -99,8 +101,24 @@ routerManager.get("/manager/:action", function (req, res) {
 
             break;
 
+        case "5":
 
-        case "7":
+            db.Category.findAll({
+                order: [
+                    ['category_name', 'ASC']
+                ]
+            }).then(function (categoryList) {
+                var hbsObj = {
+                    categories: categoryList
+                };
+
+                res.render("add_category", hbsObj);
+            });
+
+            break;
+
+
+        case "6":
 
             res.render("search_user");
 
@@ -294,7 +312,7 @@ routerManager.post("/manager/useritems", function (req, res) {
 
 });
 
-// ---------------- Get complete history of user hires -----------------------
+// -------------- Get complete history of user hires -----------------
 
 routerManager.post("/manager/userhistory", function (req, res) {
 
@@ -373,7 +391,7 @@ routerManager.post("/manager/stockupdate", function (req, res) {
 
 });
 
-// ---------------- Try record lookup using product id -----------------------
+// ---------------- Try record lookup using product id ------------------
 
 
 routerManager.post("/manager/trylookup", function (req, res) {
@@ -414,11 +432,12 @@ routerManager.post("/manager/logreturn", function (req, res) {
     var id = req.body.id;
 
     db.Try.findOne({
-        where: {id: id}
-    }).then(function(tryRecord) {
+        where: {
+            id: id
+        }
+    }).then(function (tryRecord) {
 
-        db.Completed.create({ 
-
+        db.Completed.create({
             ProductId: tryRecord.ProductId,
             UserId: tryRecord.UserId,
             comleted_subscription: 1,
@@ -433,8 +452,8 @@ routerManager.post("/manager/logreturn", function (req, res) {
             }).then(function (user) {
 
                 res.redirect("/manager");
-                
-                })
+
+            })
 
         );
 
@@ -442,6 +461,28 @@ routerManager.post("/manager/logreturn", function (req, res) {
 
 });
 
+// ---------------- Add category -----------------------
+
+routerManager.post("/manager/addcategory", function (req, res) {
+
+    db.Category.create({
+        category_name: req.body.name
+    }).then(function (createdId) {
+
+        db.Category.findAll({
+            order: [
+                ['category_name', 'ASC']
+            ]
+        }).then(function (categoryList) {
+            var hbsObj = {
+                categories: categoryList
+            };
+
+            res.render("add_category", hbsObj);
+
+        });
+    });
+});
 
 
 

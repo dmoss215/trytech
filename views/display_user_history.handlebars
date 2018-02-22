@@ -65,9 +65,7 @@
 
             <div id="back-buttons">
 
-                <form method="post" action="/manager/searchuser" style="display: inline-block"></form>
-                    <button type="submit" class="btn btn-default register-submit-btn" id="back" name="id" value="{{customers.id}}">back</button>
-                </form>
+                <button type="button" class="btn btn-default register-submit-btn" id="back">back</button>
 
                 <button type="button" class="btn btn-default register-submit-btn" id="back-manager-menu">Manager menu</button>
 
@@ -78,9 +76,7 @@
         </div>
 
 
-        <div class="col-md-4">
-
-        </div>
+        <div class="col-md-4"></div>
 
     </row>
 
@@ -91,6 +87,11 @@
     $(function () {
 
         $("#back").on("click", function (event) {
+             window.location = "/manager";
+
+        })
+
+         $("#back-manager-menu").on("click", function (event) {
              window.location = "/manager";
 
         })
