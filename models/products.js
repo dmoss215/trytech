@@ -12,6 +12,13 @@ module.exports = function (sequelize, DataTypes) {
         units_available: {type: DataTypes.INTEGER, allowNull: false, defaultValue: 0}
     });
 
+    Product.associate = function(models) {
+        Product.hasMany(models.Try);
+        Product.hasMany(models.Completed);
+
+    };
+
+
     return Product;
 };
 

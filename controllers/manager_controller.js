@@ -68,6 +68,34 @@ routerManager.get("/manager/:action", function (req, res) {
         });
             break;
 
+        case "3":
+
+        db.Try.findAll({
+
+            include: {model: db.Product}
+            // [
+            //     {
+            //     model: db.User,
+            // }, {
+            //     model: db.Product
+            // }]
+    
+        }).then(function (productsFound) {
+
+                var hbsObj = {
+                    products: productsFound,
+                };
+    
+                console.log(hbsObj);
+    
+                res.render("view_hired_items", hbsObj);
+            });
+
+            break;
+    
+
+
+
 
         case "7":
 
@@ -139,7 +167,7 @@ routerManager.post("/manager/searchuser", function (req, res) {
 
     } else {
 
-        // ----- query db useing user name -------------
+        // ----- query db using user name -------------
 
         db.User.findOne({
             where: {
@@ -191,7 +219,7 @@ routerManager.post("/manager/updateuser", function (req, res) {
             id: updateUser.id
         }
     }).done(
-
+        //res.render("search_user")
         res.redirect("/manager")
     );
 

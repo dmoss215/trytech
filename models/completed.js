@@ -13,9 +13,10 @@ module.exports = function (sequelize, DataTypes) {
         completed_dateback: {
             type: DataTypes.DATE,
             allowNull: false
-        },
+        }
 
     });
+
 
     Completed.associate = function (models) {
         // each active try must belong to a single customer (one to one)
