@@ -45,56 +45,59 @@ routerManager.get("/manager/:action", function (req, res) {
 
         case "2":
 
-        db.Product.findAll({
-            order: [
-                ['category_id', 'ASC']
-            ]
-        }).then(function (productList) {
-
-            db.Category.findAll({
+            db.Product.findAll({
                 order: [
-                    ['id', 'ASC']
+                    ['category_id', 'ASC']
                 ]
-            }).then(function (categoryList) {
+            }).then(function (productList) {
 
-                var hbsObj = {
-                    products: productList,
-                    categories: categoryList
-                 };
+                db.Category.findAll({
+                    order: [
+                        ['id', 'ASC']
+                    ]
+                }).then(function (categoryList) {
 
-                 res.render("inventory_page", hbsObj);
+                    var hbsObj = {
+                        products: productList,
+                        categories: categoryList
+                    };
+
+                    res.render("inventory_page", hbsObj);
 
                 });
-        });
+            });
             break;
 
         case "3":
 
-        db.Try.findAll({
+            db.Try.findAll({
 
-            include: {model: db.Product}
-            // [
-            //     {
-            //     model: db.User,
-            // }, {
-            //     model: db.Product
-            // }]
-    
-        }).then(function (productsFound) {
+                include: {model: db.Product}
+                // [
+                //     {
+                //     model: db.User,
+                // }, {
+                //     model: db.Product
+                // }]
+
+            }).then(function (recordsFound) {
 
                 var hbsObj = {
-                    products: productsFound,
+                    tryrecords: recordsFound,
                 };
-    
+
                 console.log(hbsObj);
-    
+
                 res.render("view_hired_items", hbsObj);
             });
 
             break;
-    
 
+        case "4":
 
+            res.render("log_return_items");
+
+            break;
 
 
         case "7":
@@ -219,8 +222,22 @@ routerManager.post("/manager/updateuser", function (req, res) {
             id: updateUser.id
         }
     }).done(
-        //res.render("search_user")
-        res.redirect("/manager")
+
+        db.User.findOne({
+            where: {
+                id: updateUser.id
+            }
+        }).then(function (customerFound) {
+
+            var hbsObj = {
+                customer: customerFound
+            };
+
+            console.log(hbsObj);
+
+            res.render("search_user", hbsObj);
+        })
+
     );
 
 });
@@ -318,7 +335,7 @@ routerManager.post("/manager/userhistory", function (req, res) {
 routerManager.post("/manager/stockupdate", function (req, res) {
 
     var id = req.body.id;
-    var units= req.body.units;
+    var units = req.body.units;
 
     console.log(id + " " + units);
 
@@ -345,16 +362,87 @@ routerManager.post("/manager/stockupdate", function (req, res) {
                 var hbsObj = {
                     products: productList,
                     categories: categoryList
-                 };
+                };
 
-                 res.render("inventory_page", hbsObj);
+                res.render("inventory_page", hbsObj);
 
-                });
+            });
         });
-        
+
     });
 
 });
+
+// ---------------- Try record lookup using product id -----------------------
+
+
+routerManager.post("/manager/trylookup", function (req, res) {
+
+    var id = req.body.id;
+
+    db.Try.findOne({
+        where: {
+            ProductId: id
+        },
+        include: {
+            model: db.Product
+        }
+        // [
+        //     {
+        //     model: db.User,
+        // }, {
+        //     model: db.Product
+        // }]
+
+    }).then(function (recordFound) {
+
+        var hbsObj = {
+            tryrecord: recordFound
+        };
+
+        res.render("log_return_items", hbsObj);
+    });
+
+});
+
+
+// ---------------- log returned product -----------------------
+
+
+routerManager.post("/manager/logreturn", function (req, res) {
+
+    var id = req.body.id;
+
+    db.Try.findOne({
+        where: {id: id}
+    }).then(function(tryRecord) {
+
+        db.Completed.create({ 
+
+            ProductId: tryRecord.ProductId,
+            UserId: tryRecord.UserId,
+            comleted_subscription: 1,
+            completed_dateout: tryRecord.active_startdate,
+            completed_dateback: tryRecord.active_startdate
+        }).done(
+
+            db.Try.destroy({
+                where: {
+                    id: req.body.id
+                }
+            }).then(function (user) {
+
+                res.redirect("/manager");
+                
+                })
+
+        );
+
+    });
+
+});
+
+
 
 
 

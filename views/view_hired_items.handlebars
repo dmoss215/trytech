@@ -16,7 +16,7 @@
             <hr>
 
             <table>
-                {{#each products}}
+                {{#each tryrecords}}
 
                 <tr>
                     <td>Product id: </td>
@@ -92,10 +92,14 @@
         $("#back-manager-menu").on("click", function (event) {
             window.location = "/manager";
 
-            $("#back-manager-menu").on("click", function (event) {
-                window.location = "/manager";
-
-            })
         });
+
+        $("#back").on("click", function (event) {
+        window.location = "/manager";
+
+
+        });
+
+    });
 
 </script>

@@ -1,0 +1,108 @@
+<div class="container manager-container">
+
+    {{#if errors}} {{#each errors}}
+    <div class="alert alert-danger">{{msg}}</div>
+    {{/each}} {{/if}}
+
+    <row class="row">
+
+        <div class="col-md-8">
+
+            <br />
+            <h2 class="page-header">Log a returned item</h2>
+
+            <br />
+            <p>
+                <strong>Logging an item as returned will close the active 'hire event' associated with that item and create a permanant entry in the 'user history' table.</strong>
+            </p>
+
+            <form method="post" action="/manager/trylookup">
+                <table>
+                    <tr>
+                        <div class="form-group form-inline">
+                            <td>
+                                <label>Enter product id of returned item: &nbsp&nbsp</label>
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" placeholder="Product id" name="id" required>
+                            </td>
+                        </div>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <button type="submit" class="btn btn-default register-submit-btn" style="margin-top: 5px" name="id" value="' + id + '">Submit</button>
+                            </td>
+                            </tr>
+                </table>
+            </form>
+            <hr>
+            
+            {{#if tryrecord.id}}
+            <strong>Please check information relating to this item hire and click 'log returned' to confim return.</strong>
+            <br />
+            <table>
+                <tr>
+                    <td>Product id: </td>
+                    <td>{{tryrecord.Product.id}}</td>
+                </tr>
+                <tr>
+                    <td>Product name: </td>
+                    <td>{{tryrecord.Product.product_name}}</td>
+                </tr>
+                <tr>
+                    <td>Customer : </td>
+                    <td>{{Customer.user_firstname}} {{Customer.user_lastname}} (Id: {{Customer.id}} )</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Hired out </td>
+                    <td>{{tryrecord.Product.createdAt}}</td>
+                </tr>
+                <tr>
+                    <td>Returned</td>
+                    <td>"today date"</td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <hr>
+                    </td>
+                    <td>
+                        <hr>
+                    </td>
+                    <td>
+                        <hr>
+                    </td>
+                </tr>
+            </table>
+
+            {{!-- Confirm selected product button --}}
+
+            <div id="confirm-buttons">
+                <form method="POST" action="/manager/logreturn" style="display: inline-block">
+                    <button type="submit" class="btn btn-default register-submit-btn" name="id" value="{{ tryrecord.id }}">Log returned</button>
+                </form>
+
+                <button type="button" class="btn btn-default register-submit-btn" id="user-search-again">Search again</button>
+            </div>
+
+
+            {{else}} {{/if}}
+
+
+        </div>
+    </row>
+</div>
+
+<script>
+
+    $(function () {
+
+        $("#user-search-again").on("click", function (event) {
+            window.reload();
+
+        });
+
+    });
+
+</script>
