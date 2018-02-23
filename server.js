@@ -70,7 +70,7 @@ app.set("view engine", "handlebars");
 // import routes
 app.use( require("./controllers/customer_controller.js"));
 app.use( require("./controllers/manager_controller.js"));
-app.use( require("./controllers/users.js"));
+app.use( require("./controllers/users_controller.js"));
 
 // sync sequelize model then start express
 

@@ -50,9 +50,9 @@ routerUser.post('/register/user', function(req, res) {
 			user_lastname: newUser.lastName,
 			user_email: newUser.email,
 			user_password: newUser.password
-		}).done(
-			res.render("success", newUser)
-		);
+		}).done(function() {
+			res.render("success", newUser);
+		});
 	}
 	
 });

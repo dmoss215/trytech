@@ -80,6 +80,11 @@ routerCustomer.post("/order-success", function (req, res) {
     res.render("order_success", update);
 });
 
+routerCustomer.get("/about-trytech", function(req, res) {
+
+    res.render("about")
+});
+
 // export routes for use in server.js
 
 module.exports = routerCustomer;
