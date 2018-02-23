@@ -76,7 +76,7 @@ NOW(),
 NOW()
 ),
 
-("Apple - MacBook Pro®", 
+("Apple - MacBook Pro", 
 "Apple", 
 'A radiant 15-inch Retina display. Powerful quad-core Intel processor. Ultrafast SSD storage. High-performance integrated graphics;
 Great built-in apps. And a Force Touch trackpad and up to 9 hours of battery life;
@@ -101,6 +101,66 @@ Get to work faster with the fastest startup and resume of any Surface Pro yet;",
 "/assets/images/surface-pro.jpg",
 3,
 7.4,
+5,
+NOW(),
+NOW()
+),
+
+("HP - Spectre x360 2-in-1", 
+"Hewlett Packard", 
+'Consolidate your workstation with this HP Spectre laptop;
+15.6" 4K Ultra HD Touch-Screen Laptop with Intel Core i7;
+16GB Memory - 512GB Solid State Drive - Dark Ash Silver;
+The 512GB solid-state drive on this HP Spectre laptop has no moving parts for fast file access;',
+1449.99,
+"/assets/images/hp-spectre.jpg",
+3,
+9.0,
+5,
+NOW(),
+NOW()
+),
+
+("Lenovo Yoga 920 Convertible 2-in-1 Laptop", 
+"Lenovo", 
+'13.9" Full HD multitouch screen for hands-on control;
+8th Gen Intel Core i7-8550U mobile processor with quad-core processing;
+8GB system memory for advanced multitasking and 256GB of hard drive space;
+Offers four versatile modes — laptop, tablet, tent and stand;',
+1299.99,
+"/assets/images/lenovo-yoga.jpg",
+3,
+9.2,
+5,
+NOW(),
+NOW()
+),
+
+("MSI Gaming Laptop - Grabski Edition", 
+"MSI", 
+'Stay competitive in the gaming world with this MSI gaming laptop;
+128GB solid-state drive and 1TB hard drive to store game files;
+The Intel Core i7 processor and 16GB of RAM minimize lag on the 17.3" screen;
+Comes bundled with the complete Star Wars The Old Republic MMO;',
+1799.99,
+"/assets/images/msi-omen.jpg",
+3,
+9.2,
+5,
+NOW(),
+NOW()
+),
+
+('Razer - Blade 4K Laptop', 
+"Razer", 
+'Enjoy portability in 4K and VR gaming with this 14-inch gaming laptop;
+Intel Core i7 processor and 16GB of RAM give this laptop plenty of horsepower;
+Its NVIDIA GeForce GTX 1060 graphics card renders rich immersive visuals;
+Browse and navigate intuitively with the Ultra HD touch screen display;',
+2399.99,
+"/assets/images/razer-blade.jpg",
+3,
+8.8,
 5,
 NOW(),
 NOW()
