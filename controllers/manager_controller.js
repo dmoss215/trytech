@@ -135,7 +135,6 @@ routerManager.get("/manager/:action", function (req, res) {
 
         case "6":
 
-
             res.render("search_user");
 
             break;

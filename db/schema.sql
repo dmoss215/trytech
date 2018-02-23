@@ -1,75 +1,87 @@
 DROP DATABASE IF EXISTS trytech_db;
-
 CREATE DATABASE trytech_db;
-
 USE trytech_db;
-
-CREATE TABLE products (
-    product_id INT NOT NULL AUTO_INCREMENT,
-    product_name VARCHAR(255) NOT NULL,
-    manufacturer VARCHAR(30),
-    product_description TEXT,
-    retail_price DECIMAL(10,2),
-    image_url VARCHAR(100),
-    rating FLOAT(2,1),
-    units_available INT NOT NULL DEFAULT  1,
-    PRIMARY KEY (product_id)
-);
-
-CREATE TABLE users (
-    user_id INT NOT NULL AUTO_INCREMENT,
-    user_firstname VARCHAR(100) NOT NULL,
-    user_lastname VARCHAR(100) NOT NULL,
-    user_email VARCHAR(60) NOT NULL,
-    address_street VARCHAR(100) NOT NULL, 
-    address_city VARCHAR (100) NOT NULL,
-    address_state VARCHAR (25) NOT NULL,
-    address_zip VARCHAR (5) NOT NULL, 
-    payment_method ENUM('credit card', 'paypal', 'bitcoin', 'voucher'),
-    agreement_signed BOOLEAN NOT NULL DEFAULT false,
-    user_password VARCHAR (60) NOT NULL,
-    user_subscription INT NOT NULL,
-    date_registered DATETIME NOT NULL,
-    PRIMARY KEY (user_id)
-);
-
-CREATE TABLE subscriptions (
-    subscription_id INT NOT NULL AUTO_INCREMENT,
-    tier_name VARCHAR(15) NOT NULL DEFAULT "pay as you go",
-    monthly_cost DECIMAL(10,2) NOT NULL DEFAULT 00.00,
-    num_devices INT NOT NULL DEFAULT 1,
-    num_days INT NOT NULL DEFAULT 5,
-    PRIMARY KEY (subscription_id)
-);
-
-CREATE TABLE items (
-    item_id INT NOT NULL AUTO_INCREMENT,
-    serial_num VARCHAR (15) DEFAULT "00000000000",
-    product_type INT NOT NULL,
-    PRIMARY KEY (item_id)
-);
-
-CREATE TABLE activeTry (
-    active_id INT NOT NULL AUTO_INCREMENT,
-    active_customer INT NOT NULL,
-    active_item INT NOT NULL,
-    active_startdate DATETIME NOT NULL, 
-    active_mailed DATETIME,
-    PRIMARY KEY (active_id)
-);
-
-CREATE TABLE  completedTry (
-    completed_id INT NOT NULL AUTO_INCREMENT,
-    completed_customer INT NOT NULL,
-    completed_item INT NOT NULL,
-    completed_dateout DATETIME NOT NULL, 
-    completed_dateback DATETIME NOT NULL,
-    PRIMARY KEY (completed_id)
-);
-
-CREATE TABLE categories (
-	category_id INT NOT NULL AUTO_INCREMENT,
-    category_name VARCHAR(20)
-);
-
-
+CREATE TABLE `products` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_name` varchar(255) NOT NULL,
+  `manufacturer` varchar(255) DEFAULT NULL,
+  `product_description` text,
+  `retail_price` decimal(10,2) DEFAULT NULL,
+  `image_url` varchar(255) DEFAULT NULL,
+  `category_id` int(11) DEFAULT NULL,
+  `rating` float DEFAULT NULL,
+  `units_available` int(11) NOT NULL DEFAULT '0',
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_firstname` varchar(255) NOT NULL,
+  `user_lastname` varchar(255) NOT NULL,
+  `user_email` varchar(255) NOT NULL,
+  `user_password` varchar(255) NOT NULL,
+  `address_street` varchar(255) DEFAULT NULL,
+  `address_city` varchar(255) DEFAULT NULL,
+  `address_state` varchar(255) DEFAULT NULL,
+  `address_zip` varchar(255) DEFAULT NULL,
+  `payment_method` enum('credit card','paypal','bitcoin','voucher') DEFAULT 'credit card',
+  `agreement_signed` tinyint(1) DEFAULT '0',
+  `user_subscription` int(11) DEFAULT NULL,
+  `date_registered` datetime DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `subscriptions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `tier_name` varchar(255) DEFAULT 'none',
+  `monthly_cost` decimal(10,2) DEFAULT NULL,
+  `num_devices` int(11) DEFAULT NULL,
+  `num_days` int(11) DEFAULT '5',
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `items` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `serial_num` varchar(255) NOT NULL DEFAULT '0000000000',
+  `product_type` int(11) NOT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `tries` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `active_startdate` datetime NOT NULL,
+  `active_mailed` datetime DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  `ProductId` int(11) DEFAULT NULL,
+  `UserId` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `tries_ibfk_1` FOREIGN KEY (`ProductId`) REFERENCES `products` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `tries_ibfk_2` FOREIGN KEY (`UserId`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+CREATE TABLE `completeds` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `comleted_subscription` int(11) NOT NULL,
+  `completed_dateout` datetime NOT NULL,
+  `completed_dateback` datetime NOT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  `UserId` int(11) NOT NULL,
+  `ProductId` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `UserId` (`UserId`),
+  KEY `ProductId` (`ProductId`),
+  CONSTRAINT `completeds_ibfk_1` FOREIGN KEY (`UserId`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  CONSTRAINT `completeds_ibfk_2` FOREIGN KEY (`ProductId`) REFERENCES `products` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+CREATE TABLE `categories` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `category_name` varchar(255) NOT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
