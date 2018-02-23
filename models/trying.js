@@ -20,17 +20,13 @@ module.exports = function (sequelize, DataTypes) {
                 allowNull: false,
             }
         });
-    };
 
-    Try.associate = function (models) {
-        // each active try must belong to a single product (one to one)
         Try.belongsTo(models.Product, {
             foreignKey: {
                 allowNull: false,
             }
         });
     };
-
 
     return Try;
 };

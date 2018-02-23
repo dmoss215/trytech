@@ -25,10 +25,7 @@ module.exports = function (sequelize, DataTypes) {
                 allowNull: false,
             }
         });
-    };
-
-    Completed.associate = function (models) {
-        // each active try must belong to a single product (one to one)
+        
         Completed.belongsTo(models.Product, {
             foreignKey: {
                 allowNull: false,

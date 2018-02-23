@@ -72,15 +72,17 @@ routerManager.get("/manager/:action", function (req, res) {
 
             db.Try.findAll({
 
-                include: {
+                include:
+                [
+                    {
+                    model: db.User,
+                }, {
                     model: db.Product
-                }
-                // [
-                //     {
-                //     model: db.User,
-                // }, {
-                //     model: db.Product
-                // }]
+                }],
+
+                order: [
+                    ['ProductId', 'ASC']
+                ]
 
             }).then(function (recordsFound) {
 
@@ -402,15 +404,13 @@ routerManager.post("/manager/trylookup", function (req, res) {
         where: {
             ProductId: id
         },
-        include: {
+        include: 
+        [
+            {
+            model: db.User,
+        }, {
             model: db.Product
-        }
-        // [
-        //     {
-        //     model: db.User,
-        // }, {
-        //     model: db.Product
-        // }]
+        }]
 
     }).then(function (recordFound) {
 
