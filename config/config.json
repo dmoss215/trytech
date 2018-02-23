@@ -1,7 +1,7 @@
 {
     "development": {  
-      "username": "testuser",
-      "password": "Hello123",
+      "username": "root",
+      "password": "love2MySQL2@CWRU",
       "database": "trytech_db",
       "host": "localhost",
       "dialect": "mysql"
