@@ -1,47 +1,111 @@
-<h3 class="order-header">Almost there... </h3>
-<br>
-<h4 class="order-subheader">What address would like your {{ product.product_name }} shipped to?</h4>
-<br>
 <div class="container register-container">
-	
-	<h2 class="page-header">Shipping Info</h2>
 
-	{{#if errors}}
-	      {{#each errors}}
-	        <div class="alert alert-danger">{{msg}}</div>
-	      {{/each}}
+	{{#if errors}} {{#each errors}}
+	<div class="alert alert-danger">{{msg}}</div>
+	{{/each}} {{/if}}
+
+	</br />
+	<h3 style="text-align: center" class="order-header">Great choice {{user.user_firstname}}!</h3>
+	<br />
+	<h5 class="order-subheader">Selected item:
+		<span style="color:  #6290C8">{{product.product_name}}</span>
+	</h5>
+
+	<br />
+
+	<h5 class="order-subheader">We have this product in stock and can send it today.</h5>
+	{{#if user.address_street}}
+
+	<hr style="margin-left: 40px; width: 400px">
+
+	<h5 class="order-subheader">Now please confirm your shipping address:</h5>
+
+	<div class="form-container">
+		<strong>
+			<table>
+				<tr>
+					<td>Name: </td>
+					<td>{{user.user_firstname}} {{user.user_lastname}}</td>
+				</tr>
+				<tr>
+					<td>Address: </td>
+					<td>{{user.address_street}}</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>{{user.address_city}}</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>{{user.address_state}}</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>{{user.address_zip}}</td>
+				</tr>
+			</table>
+		</strong>
+
+		<hr style="margin-left: 0; width: 400px">
+
+
+		<form method="post" action="/order-success" style="display: inline-block">
+			<button type="submit" class="btn btn-default register-submit-btn" name="productId" value="{{product.id}}">Confirm address</button>
+
+			<form method="post" action="/update-address"></form>
+			<button type="submit" class="btn btn-default register-submit-btn" name="productId" value="{{product.id}}">Update address</button>
+		</form>
+	</div>
+
+	{{else}} {{/if}} {{#if user.address_street}} {{else}}
+
+	<br />
+
+	<P class="order-subheader">
+		<strong>Whoops! We don't appear to have a valid address for you on record. Please enter the shipping address for this product below.
+		</strong>
+	</p>
+
+
+	<div class="form-container">
+
+		<hr>
+
+		<form method="post" action="/address-updated">
+
+			<p>
+				<strong>Name: {{user.user_firstname}} {{user.user_lastname}}</strong>
+			</p>
+
+			<div class="form-group">
+				<label>House number and street</label>
+				<input type="text" class="form-control" placeholder="e.g. 1000 Main street" name="addressStreet" required>
+			</div>
+			<div class="form-group">
+				<label>City</label>
+				<input type="text" class="form-control" placeholder="City" name="addressCity" required>
+			</div>
+			<div class="form-group">
+				<label>State</label>
+				<input type="text" class="form-control" placeholder="State" name="addressState" required>
+			</div>
+			<div class="form-group">
+				<label>Zip</label>
+				<input type="text" class="form-control" placeholder="Zip Code" name="addressZip" required>
+			</div>
+			<div>
+				<label class="custom-control custom-checkbox">
+					<input type="checkbox" class="form-check-input" name="update_address"> Make this my default address and update it in the database.
+				</label>
+			</div>
+			<hr>
+
+			<button type="submit" class="btn btn-default register-submit-btn" name="productId" value="{{product.id}}">Update address</button>
+
+		</form>
+
+	</div>
+
 	{{/if}}
-
-	<form method="post" action="/order-success">
-		<input type="hidden" name="product_name" value="{{ product.product_name }}"/>
-		<div class="form-group">
-	    <label>Full Name (as you would like it to appear on your shipping label)</label>
-	    <input type="text" class="form-control" placeholder="ex: Joseph Smith" name="fullName" required>
-	  </div>
-	  <div class="form-group">
-	    <label>Street Address</label>
-	    <input type="text" class="form-control" placeholder="ex: 123 Main St." name="addressStreet" required>
-	  </div>
-	  <div class="form-group">
-	    <label>City</label>
-	    <input type="text" class="form-control" placeholder="City" name="addressCity" required>
-	  </div>
-	   <div class="form-group">
-	    <label>State</label>
-	    <input type="text" class="form-control" placeholder="State" name="addressState" required>
-	  </div>
-	  <div class="form-group">
-	    <label>Zip</label>
-	    <input type="text" class="form-control" placeholder="Zip Code" name="addressZip" required>
-	  </div>
-	  <div>
-	  	<label class="custom-control custom-checkbox">
-		  	<input type="checkbox" class="form-check-input" name="update_address">
-		  	Make this my default address and update it in the database.
-			</label>
-	  </div>
-	  <button type="submit" class="btn btn-default register-submit-btn">Submit</button>
-	  
-	</form>
 
 </div>

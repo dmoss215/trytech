@@ -1,15 +1,24 @@
-<br>
-<h2 class="order-success-header">Thank you for your order!</h2>
-<br>
-<h4 class="order-success-subheader">Your order for one {{ product_name }} is being processed.</h4>
-<h4 class="order-success-subheader">Your order Confimation # is: {{ orderNumber }}
-<br>
-<br>
-<h4 class="order-success-subheader">We will notify you by the email registered to your account with a tracking number when your package is ready.</h4>
-<h4 class="order-success-subheader">Your package will be shipped to:<h4>
-<br>
-<div class="shipping-address">
-	<p>{{ fullName }}</p>
-	<p>{{ addressStreet }}</p>
-	<p>{{ addressCity}}, {{ addressState }} {{addressZip }}
+<div style="padding-left: 50px">
+	<br>
+	<h2 class="order-success-subheader">Thank you for your order!</h2>
+	<br>
+	<h4 Your order for one {{ product_name }} is being processed.</h4>
+		<h4 class="order-success-subheader">Your order Confimation # is: {{ orderNum }}</h4>
+		<br>
+		<h4 class="order-success-subheader" style="display: inline-block">You will recieve an order confirmation and tracking code by email to: </h4><span><strong> {{user.user_email}}.</strong></span>
+		<hr style="margin-left: 40px;width: 400px">
+		<h4 class="order-success-subheader">Your package will be shipped to:</h4>
+		<br>
+		<div class="shipping-address">
+			<strong>
+				<p>{{ user.user_firstname }} {{user.user_lastname}}</p>
+				<p>{{ user.address_street}}</p>
+				<p>{{ user.address_city}}</p>
+				<p>{{ user.address_state }} {{user.address_zip }}</p>
+			</strong>
+		</div><hr style="margin-left: 40px;width: 400px">
+
+		<a href="/" class="btn btn-primary register-submit-btn" style="margin-left: 40px">Finish</a>
+
+
 </div>
