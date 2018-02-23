@@ -8,6 +8,10 @@
     color: 	#6290C8;	
 }
 
+.header-text-logo {
+    color: black;
+}
+
 .btn-primary {
     background-color:  #45bcae;
     border-color:  #45bcae;
@@ -15,12 +19,16 @@
 
 .howitworks {
     text-align: center;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
 }
 
 .steps {
     text-align: center;
     margin-top: 50px;
+}
+
+.step3 {
+    margin-bottom: 50px;
 }
 
 .homepage-icons {
@@ -33,6 +41,7 @@
     width: 80%;
     background-color: #c0d2e9;
     margin-top: 20px;
+    margin-bottom: 120px;
 }
 
 .register-submit-btn {
@@ -56,10 +65,10 @@
     margin: 0 auto;
 }
 
-.login-btn {
+/* .login-btn {
     border-color:  #45bcae;
     width: 80px;
-}
+} */
 
 .nav-nonbtn {
     padding-top: 15px;
