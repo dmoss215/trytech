@@ -26,7 +26,11 @@ routerManager.get("/manager/:action", function (req, res) {
 
     switch (action) {
 
+        
+
         case "1":
+        
+        // ------- get category list to populate category dropdown list on the add product page -------
 
             db.Category.findAll({
                 order: [
@@ -42,8 +46,11 @@ routerManager.get("/manager/:action", function (req, res) {
             });
             break;
 
+        
 
         case "2":
+        
+        // ------- update product inventory ---------
 
             db.Product.findAll({
                 order: [
@@ -69,6 +76,8 @@ routerManager.get("/manager/:action", function (req, res) {
             break;
 
         case "3":
+
+     // view hired items (requires join between User & Product and Try databases)
 
             db.Try.findAll({
 
@@ -99,11 +108,15 @@ routerManager.get("/manager/:action", function (req, res) {
 
         case "4":
 
+        // ------  load log_return_item page ---------
+
             res.render("log_return_items");
 
             break;
 
         case "5":
+
+        // -------- get product categories for add category page] ------------
 
             db.Category.findAll({
                 order: [
@@ -122,16 +135,15 @@ routerManager.get("/manager/:action", function (req, res) {
 
         case "6":
 
-            res.render("search_user");
+            
 
             break;
 
         default:
-
+            res.render("manager");
     }
 
-});
-
+});       // -- ------- end of switch ststement ------------
 
 
 // ---------------- Add a new product  ----------------------
@@ -190,7 +202,7 @@ routerManager.post("/manager/searchuser", function (req, res) {
 
     } else {
 
-        // ----- query db using user name -------------
+        // ----- query db using user's name -------------
 
         db.User.findOne({
             where: {
