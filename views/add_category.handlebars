@@ -1,0 +1,81 @@
+<div class="container manager-container">
+
+    {{#if errors}} {{#each errors}}
+    <div class="alert alert-danger">{{msg}}</div>
+    {{/each}} {{/if}}
+
+    <row class="row">
+
+        <div class="col-md-8">
+
+            <br />
+            <h2 class="page-header">Add a product category</h2>
+
+            <br />
+            <p>
+                <strong>Current categories:</strong>
+            </p>
+
+            {{#each categories}} {{this.category_name}}
+            <br /> {{/each}}
+            <br />
+            <hr>
+
+            <p>
+                <strong>Add a category:</strong>
+            </p>
+
+            <form method="post" action="/manager/addcategory">
+                <table>
+                    <tr>
+                        <div class="form-group form-inline">
+                            <td>
+                                <label>Enter new category</label>
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" placeholder="Category name" name="name" required>
+                            </td>
+                        </div>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <button type="submit" class="btn btn-default register-submit-btn" style="margin-top: 5px">Submit</button>
+                            </td>
+                        </tr>
+                </table>
+            </form>
+            <hr>
+
+            <div id="back-buttons">
+
+                <button type="button" class="btn btn-default register-submit-btn" id="back">Back</button>
+
+                <button type="button" class="btn btn-default register-submit-btn" id="back-manager-menu">Manager menu</button>
+
+            </div>
+
+
+
+
+        </div>
+    </row>
+</div>
+
+<script>
+
+    $(function () {
+
+        $("#back-manager-menu").on("click", function (event) {
+            window.location = "/manager";
+
+        });
+
+        $("#back").on("click", function (event) {
+            window.location = "/manager";
+
+
+        });
+
+    });
+
+</script>

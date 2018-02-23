@@ -20,7 +20,8 @@ routerCustomer.get("/", function (req, res) {
         ]
     }).then(function (categoryList) {
         var hbsObj = {
-            categories: categoryList
+            categories: categoryList,
+            user: req.user
         };
         console.log(hbsObj);
 

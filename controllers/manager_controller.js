@@ -26,7 +26,11 @@ routerManager.get("/manager/:action", function (req, res) {
 
     switch (action) {
 
+        
+
         case "1":
+        
+        // ------- get category list to populate category dropdown list on the add product page -------
 
             db.Category.findAll({
                 order: [
@@ -42,24 +46,104 @@ routerManager.get("/manager/:action", function (req, res) {
             });
             break;
 
-        case "2":
+        
 
-            console.log("2");
+        case "2":
+        
+        // ------- update product inventory ---------
+
+            db.Product.findAll({
+                order: [
+                    ['category_id', 'ASC']
+                ]
+            }).then(function (productList) {
+
+                db.Category.findAll({
+                    order: [
+                        ['id', 'ASC']
+                    ]
+                }).then(function (categoryList) {
+
+                    var hbsObj = {
+                        products: productList,
+                        categories: categoryList
+                    };
+
+                    res.render("inventory_page", hbsObj);
+
+                });
+            });
+            break;
+
+        case "3":
+
+     // view hired items (requires join between User & Product and Try databases)
+
+            db.Try.findAll({
+
+                include:
+                [
+                    {
+                    model: db.User,
+                }, {
+                    model: db.Product
+                }],
+
+                order: [
+                    ['ProductId', 'ASC']
+                ]
+
+            }).then(function (recordsFound) {
+
+                var hbsObj = {
+                    tryrecords: recordsFound,
+                };
+
+                console.log(hbsObj);
+
+                res.render("view_hired_items", hbsObj);
+            });
 
             break;
 
-        case "7":
+        case "4":
 
-            res.render("search_user");
+        // ------  load log_return_item page ---------
+
+            res.render("log_return_items");
+
+            break;
+
+        case "5":
+
+        // -------- get product categories for add category page] ------------
+
+            db.Category.findAll({
+                order: [
+                    ['category_name', 'ASC']
+                ]
+            }).then(function (categoryList) {
+                var hbsObj = {
+                    categories: categoryList
+                };
+
+                res.render("add_category", hbsObj);
+            });
+
+            break;
+
+
+        case "6":
+
+            
 
             break;
 
         default:
-
+            res.render("manager");
     }
 
-});
-
+});       // -- ------- end of switch ststement ------------
 
 
 // ---------------- Add a new product  ----------------------
@@ -118,7 +202,7 @@ routerManager.post("/manager/searchuser", function (req, res) {
 
     } else {
 
-        // ----- query db useing user name -------------
+        // ----- query db using user's name -------------
 
         db.User.findOne({
             where: {
@@ -171,7 +255,21 @@ routerManager.post("/manager/updateuser", function (req, res) {
         }
     }).done(
 
-        res.redirect("/manager")
+        db.User.findOne({
+            where: {
+                id: updateUser.id
+            }
+        }).then(function (customerFound) {
+
+            var hbsObj = {
+                customer: customerFound
+            };
+
+            console.log(hbsObj);
+
+            res.render("search_user", hbsObj);
+        })
+
     );
 
 });
@@ -228,6 +326,8 @@ routerManager.post("/manager/useritems", function (req, res) {
 
 });
 
+// -------------- Get complete history of user hires -----------------
+
 routerManager.post("/manager/userhistory", function (req, res) {
 
     var id = req.body.id;
@@ -261,6 +361,141 @@ routerManager.post("/manager/userhistory", function (req, res) {
     });
 
 });
+
+// ---------------- Update stock levels -----------------------
+
+routerManager.post("/manager/stockupdate", function (req, res) {
+
+    var id = req.body.id;
+    var units = req.body.units;
+
+    console.log(id + " " + units);
+
+    db.Product.update({
+        units_available: units
+    }, {
+        where: {
+            id: id
+        }
+    }).then(function (product) {
+
+        db.Product.findAll({
+            order: [
+                ['category_id', 'ASC']
+            ]
+        }).then(function (productList) {
+
+            db.Category.findAll({
+                order: [
+                    ['id', 'ASC']
+                ]
+            }).then(function (categoryList) {
+
+                var hbsObj = {
+                    products: productList,
+                    categories: categoryList
+                };
+
+                res.render("inventory_page", hbsObj);
+
+            });
+        });
+
+    });
+
+});
+
+// ---------------- Try record lookup using product id ------------------
+
+
+routerManager.post("/manager/trylookup", function (req, res) {
+
+    var id = req.body.id;
+
+    db.Try.findOne({
+        where: {
+            ProductId: id
+        },
+        include: 
+        [
+            {
+            model: db.User,
+        }, {
+            model: db.Product
+        }]
+
+    }).then(function (recordFound) {
+
+        var hbsObj = {
+            tryrecord: recordFound
+        };
+
+        res.render("log_return_items", hbsObj);
+    });
+
+});
+
+
+// ---------------- log returned product -----------------------
+
+
+routerManager.post("/manager/logreturn", function (req, res) {
+
+    var id = req.body.id;
+
+    db.Try.findOne({
+        where: {
+            id: id
+        }
+    }).then(function (tryRecord) {
+
+        db.Completed.create({
+            ProductId: tryRecord.ProductId,
+            UserId: tryRecord.UserId,
+            comleted_subscription: 1,
+            completed_dateout: tryRecord.active_startdate,
+            completed_dateback: tryRecord.active_startdate
+        }).done(
+
+            db.Try.destroy({
+                where: {
+                    id: req.body.id
+                }
+            }).then(function (user) {
+
+                res.redirect("/manager");
+
+            })
+
+        );
+
+    });
+
+});
+
+// ---------------- Add category -----------------------
+
+routerManager.post("/manager/addcategory", function (req, res) {
+
+    db.Category.create({
+        category_name: req.body.name
+    }).then(function (createdId) {
+
+        db.Category.findAll({
+            order: [
+                ['category_name', 'ASC']
+            ]
+        }).then(function (categoryList) {
+            var hbsObj = {
+                categories: categoryList
+            };
+
+            res.render("add_category", hbsObj);
+
+        });
+    });
+});
+
 
 
 

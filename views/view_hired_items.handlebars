@@ -9,43 +9,46 @@
         <div class="col-md-8">
 
             <br />
-            <h2 class="page-header">Customer history</h2>
+            <h2 class="page-header">View all hired items</h2>
 
             <br />
-            <p>
-                <strong>Customer id: {{customers.id}} &nbsp&nbsp | &nbsp&nbsp Name: {{customers.user_firstname}} {{customers.user_lastname}}</strong>
-
-            </p>
-
+            <p>Hired items viewed by id:</p>
             <hr>
 
             <table>
-                {{#each products}}
+                {{#each tryrecords}}
 
                 <tr>
                     <td>Product id: </td>
                     <td>{{Product.id}}</td>
-
+                    <td></td>
                 </tr>
                 <tr>
                     <td>Product name: </td>
                     <td>{{Product.product_name}}</td>
+                    <td></td>
                 </tr>
                 <tr>
-                    <td>Retail price: </td>
-                    <td>{{Product.retail_price}}</td>
+                    <td>Customer : </td>
+                    <td>{{User.user_firstname}} {{User.user_lastname}} (Id: {{User.id}} )</td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>Category: </td>
                     <td>{{Product.category_id}}</td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>Hired out </td>
                     <td>{{Product.createdAt}}</td>
+                    <td></td>
                 </tr>
                 <tr>
-                    <td>Returned</td>
+                    <td>Due back </td>
                     <td>{{Product.createdAt}}</td>
+                    <td>
+                        <button type="submit" class="btn btn-default register-submit-btn" style="margin: 0">Log returned</button>
+                    </td>
                 </tr>
 
                 <tr>
@@ -65,13 +68,11 @@
 
             <div id="back-buttons">
 
-                <button type="button" class="btn btn-default register-submit-btn" id="back">back</button>
+                <button type="button" class="btn btn-default register-submit-btn" id="back">Back</button>
 
                 <button type="button" class="btn btn-default register-submit-btn" id="back-manager-menu">Manager menu</button>
 
-
             </div>
-
 
         </div>
 
@@ -86,15 +87,17 @@
 
     $(function () {
 
+        $("#back-manager-menu").on("click", function (event) {
+            window.location = "/manager";
+
+        });
+
         $("#back").on("click", function (event) {
-             window.location = "/manager";
+        window.location = "/manager";
 
-        })
 
-         $("#back-manager-menu").on("click", function (event) {
-             window.location = "/manager";
+        });
 
-        })
-    }); 
+    });
 
 </script>
