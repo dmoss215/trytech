@@ -1,0 +1,68 @@
+<div class="container register-container">
+
+    {{#if errors}} {{#each errors}}
+    <div class="alert alert-danger">{{msg}}</div>
+    {{/each}} {{/if}}
+
+    </br />
+    <h3 style="text-align: center" class="order-header">{{user.user_firstname}}, please review and confirm your order:</h3>
+    <br />
+
+    <div class="form-container">
+        <h5>Item to ship:
+            <span style="color:  #6290C8">{{product.product_name}}</span>
+        </h5>
+
+        <hr>
+
+        <h5>Your shipping address:</h5>
+        <br />
+
+
+        <strong>
+            <table>
+                <tr>
+                    <td>Name: </td>
+                    <td>{{orderUser.user_firstname}} {{user.user_lastname}}</td>
+                </tr>
+                <tr>
+                    <td>Address: </td>
+                    <td>{{orderUser.address_street}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>{{orderUser.address_city}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>{{orderUser.address_state}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>{{orderUser.address_zip}}</td>
+                </tr>
+            </table>
+        </strong>
+        <hr>
+        <h5>Item due back:</h5>
+        <strong>
+            <table>
+                <tr>
+                    <td style="width: 65px"></td>
+                    <td>5 days - 03/03/2018</td>
+                </tr>
+            </table>
+        </strong>
+
+        <hr>
+
+        <p>Clicking 'confirm order' will complete your order and the item will be shipped today. </p>
+
+        <form method="post" action="/order-success" style="display: inline-block">
+            <button type="submit" class="btn btn-default register-submit-btn" name="productId" value="{{product.id}}">Confirm order</button>
+
+            <a href="/" class="btn btn-primary register-submit-btn" style="margin-left: 40px">Cancel</a>
+        </form>
+
+    </div>
+</div>

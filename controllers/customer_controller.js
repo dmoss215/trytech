@@ -50,44 +50,119 @@ routerCustomer.get("/categories/:id", function (req, res) {
 
 routerCustomer.get("/add-to-cart/:id", function (req, res) {
 
-    //var user = req.user;
+    var user = req.user;
 
-    db.Product.findOne({
-        where: {
-            id: req.params.id
-        }
-    }).then(function(product) {
+    if (user != null) {
 
-        var hbsObj = {
-            product: product,
-            //user: user
-        };
-        console.log(hbsObj);
+        db.Product.findOne({
+            where: {
+                id: req.params.id
+            }
+        }).then(function (product) {
 
-        res.render("order", hbsObj);
-    });
+            var hbsObj = {
+                product: product,
+                user: user
+            };
+
+            console.log(hbsObj);
+
+            res.render("order", hbsObj);
+        });
+
+    } else {
+
+        res.render("index");
+    }
+
 });
+
+routerCustomer.post("/address-updated", function (req, res) {
+
+    var updateUser = req.body;
+    var productId = req.body.productId;
+
+    console.log(updateUser);
+    console.log(productId);
+
+    db.User.update({
+        address_street: updateUser.addressStreet,
+        address_city: updateUser.addressCity,
+        address_state: updateUser.addressState,
+        address_zip: updateUser.addressZip,
+    }, {
+        where: {
+            id: req.user.id
+        }
+    }).then(
+
+        db.Product.findOne({
+            where: {
+                id: productId
+            }
+        }).then(function (productFound) {
+
+                db.User.findOne({
+                    where: {
+                        id: req.user.id
+                    }
+                }).then(function (userFound) {
+
+                    var hbsObj = {
+                        product: productFound,
+                        orderUser: userFound
+                    };
+
+                    res.render("confirm_order", hbsObj);
+                });
+
+        })
+
+    );
+
+});
+
+routerCustomer.post("/update-address", function (req, res) {
+
+    // route to new page just devoted to updating customer address
+
+    // new page gathers same info as order-page and submits to /address-updated
+
+
+
+});
+
+
+
 
 routerCustomer.post("/order-success", function (req, res) {
 
-    var update = (req.body);
-    console.log(update);
+    var order = req.body;
 
-    if (update.update_address === "on") {
-        console.log("Need to write sequelize function to update user address with passport.js info.");
-    }
+    db.Try.create({
+        ProductId: order.productId,
+        UserId: req.user.id,
+        active_startdate: '2017-12-02 00:00:00',
+        active_mailed: '2017-12-02 00:00:00'
+    }).then(function(record) {
 
-    var min = 1000000;
-    var max = 9999999;
-    update.orderNumber = Math.floor(Math.random() * (max - min + 1) ) + min;
+        hbsObj = {
+            orderNum: record.id
+        };
 
-    res.render("order_success", update);
+    res.render("order_success", hbsObj);
+
+    });
 });
 
-routerCustomer.get("/about-trytech", function(req, res) {
 
-    res.render("about")
+
+routerCustomer.get("/about-trytech", function (req, res) {
+
+    res.render("about");
 });
+
+
 
 // export routes for use in server.js
 
