@@ -50,6 +50,8 @@ routerCustomer.get("/categories/:id", function (req, res) {
 
 routerCustomer.get("/add-to-cart/:id", function (req, res) {
 
+    //var user = req.user;
+
     db.Product.findOne({
         where: {
             id: req.params.id
@@ -57,7 +59,8 @@ routerCustomer.get("/add-to-cart/:id", function (req, res) {
     }).then(function(product) {
 
         var hbsObj = {
-            product: product
+            product: product,
+            //user: user
         };
         console.log(hbsObj);
 
