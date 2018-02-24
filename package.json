@@ -4,7 +4,8 @@
   "description": "site to try new tech products for a monthly subscription fee",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "NODE_ENV=production node server.js"
   },
   "repository": {
     "type": "git",
