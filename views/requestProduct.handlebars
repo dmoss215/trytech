@@ -1,0 +1,22 @@
+<div class="container-fluid">
+    <h2 class="page-header">Request Product</h2>
+    {{#if errors}} {{#each errors}}
+    <div class="alert alert-danger">{{msg}}</div>
+    {{/each}} {{/if}}
+
+    <form method="post" action="/requestProduct">
+
+        <div class="form-group">
+            <label>Product Name</label>
+            <input type="text" class="form-control" placeholder="product" name="productName" required>
+        </div>
+        <div class="form-group">
+            <label>Category</label>
+            <input type="text" class="form-control" placeholder="category" name="category" required>
+        </div>
+        <div class="requst-product-btn">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+
+    </form>
+</div>

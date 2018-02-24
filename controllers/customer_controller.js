@@ -86,6 +86,19 @@ routerCustomer.get("/about-trytech", function(req, res) {
     res.render("about")
 });
 
+routerCustomer.post("/requestProduct", function (req, res) { 
+    var requestedProduct = req.body;
+    console.log(requestedProduct);
+
+    // TODO: Create table to add requested products
+    
+ })
+
+routerCustomer.get("/requestProduct", function (req, res) { 
+    
+    res.render("requestProduct")
+ })
+
 // export routes for use in server.js
 
 module.exports = routerCustomer;
